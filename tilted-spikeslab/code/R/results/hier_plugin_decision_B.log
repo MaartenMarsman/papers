@@ -1,0 +1,12 @@
+== exact-ratio reference (spec 1) ==
+between-seed TV floor = 0.0131; E[m] = 2.710; ESS(m)/s = 342646
+
+== plug-in chain vs exact-ratio chain (posterior, V6 data) ==
+     N disc_rate tv_vs_exact tv_between_seeds  E_m ess_per_sec
+     2   0.12321      0.0949           0.0218 2.95      107531
+    10   0.04947      0.0253           0.0262 2.77       50756
+   100   0.01422      0.0151           0.0281 2.72        8673
+  1000   0.00463      0.0169           0.0281 2.72        1192
+ 10000   0.00178      0.0182           0.0374 2.71         100
+reference: TV floor 0.0131, E[m] 2.710, ESS(m)/s 342646
+Saved R/results/hier_plugin_decision_B.rds

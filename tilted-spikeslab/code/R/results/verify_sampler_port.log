@@ -1,0 +1,12 @@
+== C++ port vs exact enumeration at q = 4 (n_iter = 6e4) ==
+joint eta=1 delta=1 p=.5     TV(exact) = 0.0099  [between-seed = 0.0210]  E[m] 2.385 vs 2.385  acc = 0.79  drift = 9.61e-11
+joint eta=1 delta=0 p=.5     TV(exact) = 0.0080  [between-seed = 0.0191]  E[m] 2.011 vs 2.012  acc = 0.67  drift = 4.02e-05
+joint eta=2 delta=1 p=.25    TV(exact) = 0.0043  [between-seed = 0.0122]  E[m] 0.729 vs 0.729  acc = 0.24  drift = 4.68e-11
+hier  eta=1 delta=1 p=.5     TV(exact) = 0.0136  [between-seed = 0.0262]  E[m] 2.999 vs 3.000  acc = 0.92  drift = 1.81e-10
+hier  eta=1 delta=1 p=.25    TV(exact) = 0.0072  [between-seed = 0.0137]  E[m] 1.501 vs 1.500  acc = 0.50  drift = 6.48e-11
+
+== speed reading (prior-only joint chain) ==
+q = 20: 13864 iterations/s (E[m] = 12.9, acc = 0.14, drift = 2.18e-11)
+q = 50: 1007 iterations/s (E[m] = 84.0, acc = 0.14, drift = 5.30e-10)
+
+Saved R/results/verify_sampler_port.rds

@@ -1,0 +1,15 @@
+q=3 eta=0.5 delta=1.6 | c0=0.8856(6.5e-04) emptyerr=+1.34e-03 | pairs=12 below=0 >=1: 0 | min=0.8858 max=0.887958 | discdev=4.07e-04 (tol 3.15e-02) | 0.1 min
+q=3 eta=1 delta=0.8 | c0=0.6292(2.3e-04) emptyerr=+3.69e-04 | pairs=12 below=0 >=1: 0 | min=0.6290 max=0.653030 | discdev=5.75e-04 (tol 8.95e-03) | 0.1 min
+q=3 eta=1 delta=1.6 | c0=0.7088(6.0e-04) emptyerr=+1.34e-03 | pairs=12 below=0 >=1: 0 | min=0.7082 max=0.721374 | discdev=1.44e-03 (tol 3.15e-02) | 0.1 min
+q=3 eta=2 delta=1.6 | c0=0.4650(5.1e-04) emptyerr=+1.34e-03 | pairs=12 below=0 >=1: 0 | min=0.4615 max=0.492325 | discdev=6.22e-03 (tol 3.10e-02) | 0.1 min
+q=3 eta=1 delta=0 | c0=0.4918(9.1e-05) emptyerr=+0.00e+00 | pairs=12 below=0 >=1: 0 | min=0.4905 max=0.549644 | discdev=1.24e-03 (tol 3.21e-03) | 0.1 min
+q=4 eta=0.5 delta=1.6 | c0=0.8856(6.5e-04) emptyerr=-2.22e-02 | pairs=192 below=0 >=1: 0 | min=0.8831 max=0.889999 | discdev=2.47e-03 (tol 8.23e-02) | 0.1 min
+q=4 eta=1 delta=0.8 | c0=0.6292(2.3e-04) emptyerr=-4.04e-03 | pairs=192 below=0 >=1: 0 | min=0.6278 max=0.675758 | discdev=3.62e-03 (tol 2.71e-02) | 0.1 min
+q=4 eta=1 delta=1.6 | c0=0.7088(6.0e-04) emptyerr=-2.22e-02 | pairs=192 below=0 >=1: 0 | min=0.6990 max=0.734668 | discdev=9.07e-03 (tol 1.04e-01) | 0.1 min
+q=4 eta=2 delta=1.6 | c0=0.4650(5.1e-04) emptyerr=-2.22e-02 | pairs=192 below=0 >=1: 0 | min=0.4336 max=0.535305 | discdev=2.59e-02 (tol 1.61e-01) | 0.1 min
+q=4 eta=1 delta=0 | c0=0.4918(9.1e-05) emptyerr=+0.00e+00 | pairs=192 below=0 >=1: 0 | min=0.4887 max=0.595231 | discdev=3.04e-03 (tol 9.39e-03) | 0.1 min
+q=5 eta=1 delta=0.8 | c0=0.6292(2.3e-04) emptyerr=-1.54e-03 | pairs=5120 below=0 >=1: 0 | min=0.6212 max=0.723713 | discdev=2.02e-02 (tol 1.21e-01) | 0.9 min
+q=5 eta=1 delta=1.6 | c0=0.7088(6.0e-04) emptyerr=+3.00e-02 | pairs=5120 below=0 >=1: 0 | min=0.6369 max=0.823202 | discdev=7.71e-02 (tol 9.06e-01) | 0.8 min
+
+OVERALL: PASS
+Done. Results saved to R/results/monotonicity_check.rds

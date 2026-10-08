@@ -1,0 +1,15 @@
+== full-chain prior-level checks at q = 4 (n_iter = 6e4) ==
+joint eta=1 delta=1 p=.5     TV(exact) = 0.0106  [seeds: 0.0125 / 0.0156; between = 0.0198]  E[m] 2.384 vs 2.385  acc = 0.79
+joint eta=1 delta=0 p=.5     TV(exact) = 0.0111  [seeds: 0.0150 / 0.0144; between = 0.0183]  E[m] 2.012 vs 2.012  acc = 0.67
+joint eta=2 delta=1 p=.25    TV(exact) = 0.0049  [seeds: 0.0078 / 0.0063; between = 0.0108]  E[m] 0.729 vs 0.729  acc = 0.24
+hier  eta=1 delta=1 p=.5     TV(exact) = 0.0149  [seeds: 0.0216 / 0.0243; between = 0.0341]  E[m] 2.997 vs 3.000  acc = 0.92
+hier  eta=1 delta=1 p=.25    TV(exact) = 0.0073  [seeds: 0.0103 / 0.0101; between = 0.0140]  E[m] 1.501 vs 1.500  acc = 0.50
+
+== V4-lite: posterior moments, within-only Gibbs vs importance sampling (q = 3, path graph, n = 10) ==
+E[k12]         Gibbs =  -0.2820   IS =  -0.2846   rel diff = 0.0090
+E[k23]         Gibbs =  -0.0637   IS =  -0.0618   rel diff = 0.0315
+E[k22]         Gibbs =   3.1281   IS =   3.1317   rel diff = 0.0012
+E[lambda_min]  Gibbs =   1.3896   IS =   1.3826   rel diff = 0.0050
+IS effective sample size: 25634 of 120000
+
+Saved R/results/verify_sampler_prior_level.rds

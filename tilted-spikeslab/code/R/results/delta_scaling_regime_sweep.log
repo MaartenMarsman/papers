@@ -1,0 +1,7 @@
+== validation ==
+validate delta=0.5 eta=1.0: IS median lmin = 0.3113 (ESS 4912), Gibbs = 0.3132, rel diff = 0.006
+validate delta=2.0 eta=1.0: IS median lmin = 1.0875 (ESS 54), Gibbs = 1.0608, rel diff = 0.025
+validation PASSED
+
+running 1296 cells on 12 cores
+done in 1.6 min; 1296 rows -> /Users/maartenmarsman/Library/CloudStorage/Dropbox/Projecten/SV/spikeslab/R/results/delta_scaling_regime_sweep.rds

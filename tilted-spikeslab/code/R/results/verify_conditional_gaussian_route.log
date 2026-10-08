@@ -1,0 +1,85 @@
+== (a) Gamma-mixture identity for Ntilde ==
+delta = 0.0  u = 0.0  mixture = 1.00000000  2-D = 1.00000000  rel.err = 1.89e-14
+delta = 0.0  u = 0.3  mixture = 0.78170096  2-D = 0.78170096  rel.err = 2.26e-14
+delta = 0.0  u = 1.0  mixture = 0.27973176  2-D = 0.27973176  rel.err = 8.86e-14
+delta = 0.0  u = 2.0  mixture = 0.04993400  2-D = 0.04993400  rel.err = 4.15e-13
+delta = 0.8  u = 0.0  mixture = 0.86747573  2-D = 0.86747573  rel.err = 4.66e-13
+delta = 0.8  u = 0.3  mixture = 0.78756937  2-D = 0.78756937  rel.err = 4.46e-13
+delta = 0.8  u = 1.0  mixture = 0.40757935  2-D = 0.40757935  rel.err = 9.46e-13
+delta = 0.8  u = 2.0  mixture = 0.10382524  2-D = 0.10382524  rel.err = 3.37e-12
+delta = 1.6  u = 0.0  mixture = 2.04382638  2-D = 2.04382638  rel.err = 8.62e-13
+delta = 1.6  u = 0.3  mixture = 1.93565281  2-D = 1.93565281  rel.err = 4.08e-13
+delta = 1.6  u = 1.0  mixture = 1.22614883  2-D = 1.22614883  rel.err = 3.53e-13
+delta = 1.6  u = 2.0  mixture = 0.40735771  2-D = 0.40735771  rel.err = 7.79e-13
+
+== (c) c(0) = A(sigma^2)/A(0) vs known values (eta = 1) ==
+delta = 0.0  c(0) = 0.4917  (known 0.4918)
+delta = 0.8  c(0) = 0.6291  (known 0.6290)
+delta = 1.6  c(0) = 0.7089  (known 0.7090)
+
+== (e) log-convexity of A(v): min second difference of log A ==
+delta = 0.0  min d2 log A = 4.013e-05  (must be >= 0)
+delta = 0.8  min d2 log A = 3.560e-05  (must be >= 0)
+delta = 1.6  min d2 log A = 3.174e-05  (must be >= 0)
+
+== (b) three estimators of Z(G-) and Z(G+), n = 3e+05 ==
+
+graph A, delta = 0.0  [c(0) = 0.4917]
+  est 1: Z- = 0.118320 (0.000590)   Z+ = 0.064773 (0.000449)   ratio = 0.5474
+  est 2: Z- = 0.118743 (0.000451)   Z+ = 0.065137 (0.000232)   ratio = 0.5486
+  est 3: Z- = 0.118862 (0.000373)   Z+ = 0.065209 (0.000195)   ratio = 0.5486
+    spot check (2000 draws): PD flag mismatches = 0, max rel err = 0.00e+00
+
+graph A, delta = 0.8  [c(0) = 0.6291]
+  est 1: Z- = 0.190350 (0.002254)   Z+ = 0.125822 (0.001936)   ratio = 0.6610
+  est 2: Z- = 0.187570 (0.001067)   Z+ = 0.122348 (0.000680)   ratio = 0.6523
+  est 3: Z- = 0.187722 (0.000994)   Z+ = 0.122418 (0.000637)   ratio = 0.6521
+
+graph A, delta = 1.6  [c(0) = 0.7089]
+  est 1: Z- = 1.437433 (0.056988)   Z+ = 1.032344 (0.050531)   ratio = 0.7182
+  est 2: Z- = 1.463280 (0.016771)   Z+ = 1.053435 (0.011955)   ratio = 0.7199
+  est 3: Z- = 1.466023 (0.016148)   Z+ = 1.055297 (0.011530)   ratio = 0.7198
+
+graph B, delta = 0.0  [c(0) = 0.4917]
+  est 1: Z- = 0.241683 (0.000782)   Z+ = 0.119067 (0.000591)   ratio = 0.4927
+  est 2: Z- = 0.241340 (0.000543)   Z+ = 0.118665 (0.000267)   ratio = 0.4917
+  est 3: Z- = 0.241616 (0.000399)   Z+ = 0.118801 (0.000196)   ratio = 0.4917
+  disconnected pair: est-3 ratio - c(0) = -1.15e-14 (must be ~0 exactly)
+    spot check (2000 draws): PD flag mismatches = 0, max rel err = 0.00e+00
+
+graph B, delta = 0.8  [c(0) = 0.6291]
+  est 1: Z- = 0.298637 (0.002549)   Z+ = 0.187003 (0.002162)   ratio = 0.6262
+  est 2: Z- = 0.297545 (0.001219)   Z+ = 0.187193 (0.000767)   ratio = 0.6291
+  est 3: Z- = 0.297823 (0.001125)   Z+ = 0.187368 (0.000708)   ratio = 0.6291
+  disconnected pair: est-3 ratio - c(0) = -6.22e-15 (must be ~0 exactly)
+
+graph B, delta = 1.6  [c(0) = 0.7089]
+  est 1: Z- = 2.044918 (0.058798)   Z+ = 1.442366 (0.049554)   ratio = 0.7053
+  est 2: Z- = 2.065058 (0.018494)   Z+ = 1.463989 (0.013111)   ratio = 0.7089
+  est 3: Z- = 2.068920 (0.018071)   Z+ = 1.466727 (0.012811)   ratio = 0.7089
+  disconnected pair: est-3 ratio - c(0) = -2.53e-14 (must be ~0 exactly)
+
+graph C, delta = 0.0  [c(0) = 0.4917]
+  est 1: Z- = 0.065177 (0.000451)   Z+ = 0.036083 (0.000340)   ratio = 0.5536
+  est 2: Z- = 0.064929 (0.000308)   Z+ = 0.035677 (0.000159)   ratio = 0.5495
+  est 3: Z- = 0.065082 (0.000217)   Z+ = 0.035762 (0.000114)   ratio = 0.5495
+    spot check (2000 draws): PD flag mismatches = 0, max rel err = 0.00e+00
+
+graph C, delta = 0.8  [c(0) = 0.6291]
+  est 1: Z- = 0.124312 (0.001965)   Z+ = 0.080439 (0.001687)   ratio = 0.6471
+  est 2: Z- = 0.123137 (0.000847)   Z+ = 0.080353 (0.000540)   ratio = 0.6525
+  est 3: Z- = 0.122452 (0.000735)   Z+ = 0.079909 (0.000471)   ratio = 0.6526
+
+graph C, delta = 1.6  [c(0) = 0.7089]
+  est 1: Z- = 1.098449 (0.060628)   Z+ = 0.787943 (0.051955)   ratio = 0.7173
+  est 2: Z- = 1.077796 (0.014830)   Z+ = 0.775715 (0.010563)   ratio = 0.7197
+  est 3: Z- = 1.075240 (0.013715)   Z+ = 0.773952 (0.009787)   ratio = 0.7198
+Warning messages:
+1: In sqrt(1 + 2 * beta_par * sigma_par^2 * mf) : NaNs produced
+2: In sqrt(1 + 2 * beta_par * sigma_par^2 * mf) : NaNs produced
+3: In sqrt(1 + 2 * beta_par * sigma_par^2 * mf) : NaNs produced
+4: In sqrt(det_g) : NaNs produced
+5: In sqrt(det_g) : NaNs produced
+6: In sqrt(det_g) : NaNs produced
+
+Saved: R/results/verify_conditional_gaussian_route.rds

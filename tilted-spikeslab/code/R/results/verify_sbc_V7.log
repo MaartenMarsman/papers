@@ -1,0 +1,26 @@
+prior / joint         done in 0.1 min
+prior / hierarchical  done in 0.1 min
+posterior / joint         done in 0.0 min
+posterior / hierarchical  done in 0.1 min
+
+== V7 SBC (R = 400, L = 99, 20 bins, KS band 0.0679) ==
+      tier         spec   stat chisq     p     ks ks_ok
+     prior        joint      m  20.5 0.365 0.0300  TRUE
+     prior        joint    k11  10.3 0.945 0.0500  TRUE
+     prior        joint    k12  14.0 0.784 0.0325  TRUE
+     prior        joint logdet  23.6 0.212 0.0300  TRUE
+     prior hierarchical      m  14.0 0.784 0.0350  TRUE
+     prior hierarchical    k11  12.9 0.844 0.0450  TRUE
+     prior hierarchical    k12  15.7 0.677 0.0625  TRUE
+     prior hierarchical logdet  14.5 0.754 0.0350  TRUE
+ posterior        joint      m  13.3 0.823 0.0500  TRUE
+ posterior        joint    k11  16.0 0.657 0.0500  TRUE
+ posterior        joint    k12  16.4 0.630 0.0475  TRUE
+ posterior        joint logdet  17.7 0.543 0.0350  TRUE
+ posterior hierarchical      m  18.7 0.476 0.0325  TRUE
+ posterior hierarchical    k11  18.7 0.476 0.0575  TRUE
+ posterior hierarchical    k12  20.5 0.365 0.0450  TRUE
+ posterior hierarchical logdet  16.4 0.630 0.0450  TRUE
+
+min p = 0.2119 over 16 tests; all KS in band: TRUE
+Saved R/results/verify_sbc_V7.rds

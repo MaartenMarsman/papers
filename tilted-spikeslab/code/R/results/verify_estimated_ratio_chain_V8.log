@@ -1,0 +1,22 @@
+running 12 chains on 12 cores
+
+== V8: plug-in chain vs exact Bernoulli target (eta = 1, delta = 1) ==
+ p_inc     N n_iter tv_exact tv_between_seeds E_m_exact E_m_hat   acc
+  0.50   100  60000  0.01377           0.0349       3.0    3.00 0.915
+  0.50  1000  60000  0.01261           0.0289       3.0    3.00 0.917
+  0.50 10000  20000  0.02403           0.0622       3.0    3.00 0.918
+  0.25   100  60000  0.00856           0.0147       1.5    1.50 0.501
+  0.25  1000  60000  0.00681           0.0166       1.5    1.50 0.501
+  0.25 10000  20000  0.01468           0.0254       1.5    1.49 0.499
+ secs_per_chain
+          10.91
+         102.22
+         384.56
+           9.96
+          95.29
+         358.18
+
+Reference (V4, exact-ratio chain): TV(exact) = 0.015 / 0.007 at
+p = 0.5 / 0.25 with between-seed floors 0.034 / 0.014 (6e4 iterations).
+
+Saved R/results/verify_estimated_ratio_chain_V8.rds

@@ -1,0 +1,9 @@
+.DS_Store
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+*.o
+*.so
+*.dll
+Rplots.pdf
