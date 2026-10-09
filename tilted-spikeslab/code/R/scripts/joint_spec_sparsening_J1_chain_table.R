@@ -3,8 +3,7 @@
 #
 # Motivation: the J1 brute-force normalizing constants are importance-sampling
 # estimates with heavy-tailed weights at delta = 2; a 2e6-draw recheck
-# (R/results/j1_delta2_recheck.log; the recheck was run interactively and its
-# script was not archived) shows between-seed half-differences of 0.06 to 0.25
+# (joint_spec_sparsening_J1_delta2_recheck.R, R/results/j1_delta2_recheck.rds/.log) shows between-seed half-differences of 0.06 to 0.25
 # expected edges there (0.06 to 0.09 at p_inc = 0.25, 0.14 to 0.25 at p_inc =
 # 0.5), while the verified chain agrees between seeds
 # to +-0.01. The table is therefore regenerated from long runs of the

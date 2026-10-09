@@ -1,11 +1,13 @@
+Warning message:
+package ‘Rcpp’ was built under R version 4.6.1 
 
 == setting eta = 1, delta = 1, p_inc = 0.50 ==
-reference min ESS = 43 (of 15000)
+reference min ESS = 43 (of 60000)
 joint         TV(enum) = 0.0162  [seeds 0.0121, ref noise 0.0231]  E[m] 2.236 vs 2.230
 hierarchical  TV(enum) = 0.0160  [seeds 0.0181, ref noise 0.0313]  E[m] 2.705 vs 2.695
 
 == setting eta = 2, delta = 1, p_inc = 0.25 ==
-reference min ESS = 273 (of 15000)
+reference min ESS = 273 (of 60000)
 joint         TV(enum) = 0.0080  [seeds 0.0065, ref noise 0.0054]  E[m] 1.074 vs 1.075
 hierarchical  TV(enum) = 0.0116  [seeds 0.0127, ref noise 0.0098]  E[m] 1.738 vs 1.741
 

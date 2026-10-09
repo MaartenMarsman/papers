@@ -65,11 +65,10 @@ log_z_of <- function(eta) {
 
 ## ---- reference: log m_lik per graph via prior Gibbs + likelihood weights ----
 S0 <- matrix(0, q, q)
-# n_keep = 15000L is the setting of the archived run (R/results/*_V6.rds/.log,
-# 2026-07-28); the manuscript reports that run. The value had been raised to
-# 60000L after the run without re-running; reverted 2026-10-08 so that the
-# script reproduces the archive.
-ref_cell <- function(mask, eta, seed, n_keep = 15000L, n_burn = 500L) {
+# n_keep = 60000L prior Gibbs draws per graph and reference seed. The archived
+# run of 2026-07-28 used this value (a rerun on 2026-10-08 reproduced it to
+# four decimals); its log printed a stale "(of 15000)" string, corrected below.
+ref_cell <- function(mask, eta, seed, n_keep = 60000L, n_burn = 500L) {
   set.seed(seed)
   G <- graph_of_mask(mask)
   K <- diag(2 / eta, q)
@@ -100,7 +99,7 @@ for (st in settings) {
   ref <- do.call(rbind, ref)
   lm1 <- ref[jobs$seed == ref_seeds[1], "log_mlik"]
   lm2 <- ref[jobs$seed == ref_seeds[2], "log_mlik"]
-  cat(sprintf("reference min ESS = %.0f (of 15000)\n", min(ref[, "ess"])))
+  cat(sprintf("reference min ESS = %.0f (of 60000)\n", min(ref[, "ess"])))
 
   logw <- m_of * log(p_inc) + (M - m_of) * log(1 - p_inc)
   lz <- log_z_of(eta)

@@ -112,6 +112,11 @@ Rcpp::List gwishart_slab_record_k12_cpp(int q,
           if (E(i, j) == 1) log_w -= K(i, j) * K(i, j) * inv_2sigma2;
         }
       }
+      // A proposal whose completion overflowed (non-finite entries, which
+      // happens for near-singular Cholesky factors) is rejected explicitly;
+      // before 2026-10-09 such proposals passed the NaN comparison below and
+      // were accepted, and their rest-block quantities came out NaN.
+      if (!K.is_finite() || !std::isfinite(log_w)) continue;
       if (std::log(R::unif_rand()) >= log_w) continue;
       ++n_accepted;
       ++n_graphs_kept;

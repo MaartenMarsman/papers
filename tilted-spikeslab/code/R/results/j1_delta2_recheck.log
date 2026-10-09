@@ -1,8 +1,24 @@
+Warning message:
+package ‘Rcpp’ was built under R version 4.6.1 
 eta=1 seed=91001 p=0.25: E_J = 2.0542
 eta=1 seed=91001 p=0.50: E_J = 4.4358
+   (eta=1 seed=91001: 1024 graphs in 169.9 s)
 eta=1 seed=91002 p=0.25: E_J = 1.9424
 eta=1 seed=91002 p=0.50: E_J = 4.1607
+   (eta=1 seed=91002: 1024 graphs in 177.6 s)
 eta=2 seed=91001 p=0.25: E_J = 1.5302
 eta=2 seed=91001 p=0.50: E_J = 3.5626
+   (eta=2 seed=91001: 1024 graphs in 2308.7 s)
 eta=2 seed=91002 p=0.25: E_J = 1.3430
 eta=2 seed=91002 p=0.50: E_J = 3.0726
+   (eta=2 seed=91002: 1024 graphs in 174.5 s)
+
+Between-seed half-differences of E_J[m] at delta = 2, q = 5, 2e6 draws per graph:
+ eta p_inc E_J_seed1 E_J_seed2 half_diff
+   1  0.25     2.054     1.942   0.05594
+   2  0.25     1.530     1.343   0.09359
+   1  0.50     4.436     4.161   0.13751
+   2  0.50     3.563     3.073   0.24502
+
+Total time 47.2 min
+Wrote /Users/maartenmarsman/Library/CloudStorage/Dropbox/Projecten/SV/spikeslab/R/results/j1_delta2_recheck.rds

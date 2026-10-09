@@ -1,0 +1,40 @@
+==== marginal_offdiag_sweep.R: rerun of the q = 20, 30 cells with max_inner_tries = 1e6 (2026-10-08/09, SPIKESLAB_QS=20,30; merged into marginal_offdiag.rds; the original 2026-07 sweep of all cells has no archived log) ====
+Warning message:
+package ‘Rcpp’ was built under R version 4.6.1 
+Cells: 6
+Merging 6 rerun cells with 9 archived cells
+Done in 965.0 min
+Wrote /Users/maartenmarsman/Library/CloudStorage/Dropbox/Projecten/SV/spikeslab/R/results/marginal_offdiag.rds
+     q delta p_inc n_accepted n_on_edge kept_frac inv_fail          mean
+5    5     0  0.50       5000      5000        NA       NA -0.0072582637
+51   5     1  0.50       5000      5000        NA       NA  0.0194787232
+52   5     2  0.50       5000      5000        NA       NA  0.0186573788
+10  10     0  0.20       5000      5000        NA       NA -0.0009860238
+101 10     1  0.20       5000      5000        NA       NA  0.0091554519
+102 10     2  0.20       5000      5000        NA       NA  0.0125588523
+15  15     0  0.13       3000      3000        NA       NA  0.0405726845
+151 15     1  0.13       3000      3000        NA       NA -0.0054800105
+152 15     2  0.13       3000      3000        NA       NA  0.0264991445
+20  20     0  0.10       3000      3000 1.0000000        0  0.0241507074
+201 20     1  0.10       3000      3000 0.9943653        0  0.0150103329
+202 20     2  0.10       1532      1532 0.9404543        0  0.0090795173
+30  30     0  0.06       2000      2000 0.9995002        0  0.0175921019
+301 30     1  0.06       2000      2000 0.9460738        0  0.0098842666
+302 30     2  0.06       1496      1496 0.6834171        0 -0.0429166856
+          var       q05      q95
+5   0.3976383 -1.061597 1.008544
+51  0.4784210 -1.147655 1.160864
+52  0.6031971 -1.220831 1.343357
+10  0.3969585 -1.052813 1.021467
+101 0.5208258 -1.177096 1.210309
+102 0.5838640 -1.248301 1.279266
+15  0.3959677 -1.035558 1.082711
+151 0.5067509 -1.176330 1.187049
+152 0.6059727 -1.263686 1.318630
+20  0.4874742 -1.065962 1.124321
+201 0.6019836 -1.201636 1.205433
+202 0.6921852 -1.272056 1.328563
+30  0.7162008 -1.286693 1.356038
+301 1.0138816 -1.402943 1.412242
+302 1.4392339 -1.718901 1.549497
+[825 Armadillo warnings 'inv_sympd(): given matrix is not symmetric' removed from this log; each triggered the pivoted-inverse fallback and inv_fail = 0 in the summary]
