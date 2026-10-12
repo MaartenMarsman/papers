@@ -20,7 +20,16 @@ suppressPackageStartupMessages({
 
 PROJECT_ROOT <- Sys.getenv("SPIKESLAB_ROOT", unset = getwd())
 CPP_SRC      <- file.path(PROJECT_ROOT, "R", "src", "Z_prior_diag.cpp")
-OUT_RDS      <- file.path(PROJECT_ROOT, "R", "results", "cone_interior_expanded.rds")
+# Optional overrides (all unset by default, which reproduces the archived run):
+#   SPIKESLAB_CONE_ALPHA, SPIKESLAB_CONE_BETA  shape and rate of the Gamma diagonal prior
+#   SPIKESLAB_CONE_TAG                          suffix for the output file, e.g. "exp" writes
+#                                               cone_interior_expanded_exp.rds
+# Archived runs: the default (unset) reproduces R/results/cone_interior_expanded.rds, the
+# exponential-diagonal run of 2026-10-10 used for Figure 1; the earlier Gamma(3, 3) run of
+# 2026-05-13 is kept as cone_interior_expanded_gamma33.rds (ALPHA = 3, BETA = 3, TAG = "gamma33").
+CONE_TAG     <- Sys.getenv("SPIKESLAB_CONE_TAG", unset = "")
+OUT_RDS      <- file.path(PROJECT_ROOT, "R", "results",
+                          sprintf("cone_interior_expanded%s.rds", if (nzchar(CONE_TAG)) paste0("_", CONE_TAG) else ""))
 
 Rcpp::sourceCpp(CPP_SRC)
 
@@ -118,8 +127,8 @@ run_one_cell <- function(args) {
 
 # ----- sweep design -----
 
-ALPHA       <- 3.0
-BETA        <- 3.0
+ALPHA       <- as.numeric(Sys.getenv("SPIKESLAB_CONE_ALPHA", unset = "1"))  # exponential diagonal, rate 1 (manuscript default)
+BETA        <- as.numeric(Sys.getenv("SPIKESLAB_CONE_BETA",  unset = "1"))
 V0          <- 0.1   # only used for continuous; spike SD
 V1          <- 1.0   # only used for continuous; slab SD when sigma_eff is 1
 DELTA_GRID  <- c(0, 0.5, 1, 2)
@@ -165,6 +174,7 @@ for (sigma in sigma_grid) {
   }
 }
 
+cat(sprintf("Diagonal prior: Gamma(shape = %g, rate = %g); output %s\n", ALPHA, BETA, OUT_RDS))
 cat(sprintf("Running %d cells on 12 cores...\n", length(jobs)))
 cat(sprintf("Total draws: %g\n", sum(vapply(jobs, function(j) j$n_draws, numeric(1L)))))
 

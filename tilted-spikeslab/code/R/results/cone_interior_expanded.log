@@ -1,0 +1,48 @@
+Warning messages:
+1: package ‘Rcpp’ was built under R version 4.6.1 
+2: package ‘RcppArmadillo’ was built under R version 4.6.1 
+Diagonal prior: Gamma(shape = 1, rate = 1); output /Users/maartenmarsman/Library/CloudStorage/Dropbox/Projecten/SV/spikeslab/R/results/cone_interior_expanded_exp.rds
+Running 36 cells on 12 cores...
+Total draws: 1.344e+08
+Done in 18036.8 s.
+
+=== PD rate table ===
+    variant sigma  q  n_draws   n_pd   pd_rate lmin_pd_median diag_mean_pd
+ continuous   0.3  5   200000  71786 3.589e-01       0.138642       1.2632
+ continuous   0.3 10   500000  34989 6.998e-02       0.069235       1.3490
+ continuous   0.3 15  1000000   6253 6.253e-03       0.046060       1.4428
+ continuous   0.3 20  2000000    604 3.020e-04       0.031634       1.5266
+ continuous   0.3 30  5000000      2 4.000e-07       0.011188       1.8227
+ continuous   0.3 50 10000000      0 0.000e+00             NA           NA
+ continuous   1.0  5   500000  23132 4.626e-02       0.138010       1.5038
+ continuous   1.0 10  2000000   5150 2.575e-03       0.067368       1.5165
+ continuous   1.0 15  5000000    258 5.160e-05       0.055009       1.5959
+ continuous   1.0 20 15000000      4 2.667e-07       0.015939       1.5586
+ continuous   1.0 30 10000000      0 0.000e+00             NA           NA
+ continuous   1.0 50 10000000      0 0.000e+00             NA           NA
+ continuous   3.0  5  1000000   4711 4.711e-03       0.135104       1.4145
+ continuous   3.0 10  1000000     88 8.800e-05       0.074747       1.4204
+ continuous   3.0 15  1000000      1 1.000e-06       0.059340       1.6519
+ continuous   3.0 20  1000000      0 0.000e+00             NA           NA
+ continuous   3.0 30  1000000      0 0.000e+00             NA           NA
+ continuous   3.0 50  1000000      0 0.000e+00             NA           NA
+   discrete   0.3  5   200000  84635 4.232e-01       0.137819       1.2114
+   discrete   0.3 10   500000 109045 2.181e-01       0.069480       1.1844
+   discrete   0.3 15  1000000  99116 9.912e-02       0.046312       1.1840
+   discrete   0.3 20  2000000  80802 4.040e-02       0.034705       1.1927
+   discrete   0.3 30  5000000  60626 1.213e-02       0.023294       1.1750
+   discrete   0.3 50 10000000  20306 2.031e-03       0.014007       1.1482
+   discrete   1.0  5   500000  27830 5.566e-02       0.138572       1.4428
+   discrete   1.0 10  2000000  16371 8.186e-03       0.068875       1.3293
+   discrete   1.0 15  5000000   3819 7.638e-04       0.046464       1.3082
+   discrete   1.0 20 15000000    737 4.913e-05       0.036437       1.3000
+   discrete   1.0 30 10000000     21 2.100e-06       0.009019       1.2528
+   discrete   1.0 50 10000000      0 0.000e+00             NA           NA
+   discrete   3.0  5  1000000   6008 6.008e-03       0.138324       1.3107
+   discrete   3.0 10  1000000    408 4.080e-04       0.075272       1.2286
+   discrete   3.0 15  1000000     14 1.400e-05       0.080147       1.1515
+   discrete   3.0 20  1000000      1 1.000e-06       0.078835       0.9144
+   discrete   3.0 30  1000000      0 0.000e+00             NA           NA
+   discrete   3.0 50  1000000      0 0.000e+00             NA           NA
+
+Saved expanded diagnostics to /Users/maartenmarsman/Library/CloudStorage/Dropbox/Projecten/SV/spikeslab/R/results/cone_interior_expanded_exp.rds

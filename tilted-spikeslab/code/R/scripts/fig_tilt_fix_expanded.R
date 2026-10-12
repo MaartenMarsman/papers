@@ -14,7 +14,9 @@ suppressPackageStartupMessages({
 })
 
 PROJECT_ROOT <- Sys.getenv("SPIKESLAB_ROOT", unset = getwd())
-IN_RDS       <- file.path(PROJECT_ROOT, "R", "results", "cone_interior_expanded.rds")
+# Reads the retired Gamma(3, 3) cone sweep (the archive this exploratory figure was built on);
+# cone_interior_expanded.rds is now the exponential-diagonal run behind Figure 1 (2026-10-10).
+IN_RDS       <- file.path(PROJECT_ROOT, "R", "results", "cone_interior_expanded_gamma33.rds")
 OUT_PDF      <- file.path(PROJECT_ROOT, "figures", "tilt_fix.pdf")
 
 obj <- readRDS(IN_RDS)

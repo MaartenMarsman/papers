@@ -13,8 +13,13 @@
 PROJECT_ROOT <- Sys.getenv("SPIKESLAB_ROOT", unset = getwd())
 source(file.path(PROJECT_ROOT, "R", "scripts", "fig_style.R"))
 
-IN_RDS  <- file.path(PROJECT_ROOT, "R", "results", "cone_interior_expanded.rds")
-OUT_PDF <- file.path(PROJECT_ROOT, "figures", "cone_interior.pdf")
+# SPIKESLAB_CONE_TAG (optional) selects a tagged sweep, e.g. "gamma33" reads the retired
+# Gamma(3, 3) archive cone_interior_expanded_gamma33.rds and writes figures/cone_interior_gamma33.pdf.
+# Default (unset): the exponential-diagonal archive, which is Figure 1 of the manuscript.
+CONE_TAG <- Sys.getenv("SPIKESLAB_CONE_TAG", unset = "")
+SUFFIX   <- if (nzchar(CONE_TAG)) paste0("_", CONE_TAG) else ""
+IN_RDS  <- file.path(PROJECT_ROOT, "R", "results", sprintf("cone_interior_expanded%s.rds", SUFFIX))
+OUT_PDF <- file.path(PROJECT_ROOT, "figures", sprintf("cone_interior%s.pdf", SUFFIX))
 
 obj <- readRDS(IN_RDS)
 tab <- obj$summary

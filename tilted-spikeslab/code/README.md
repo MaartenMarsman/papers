@@ -110,6 +110,9 @@ joint_spec_sparsening_J1_z.rds ──> verify_sampler_prior_level.R (V4 R, V5)
                                ──> verify_akm_ratio.R
                                ──> joint_spec_sparsening_J2.R (reads the J1 summaries)
 cone_interior_diagnostics_expanded.R ──> cone_interior_expanded.rds ──> fig_cone_interior_expanded.R
+    (defaults: exponential diagonal, shape = rate = 1; `SPIKESLAB_CONE_ALPHA`, `SPIKESLAB_CONE_BETA` and
+     `SPIKESLAB_CONE_TAG` select another diagonal and a tagged output; `fig_tail_bound.R` and
+     `fig_tilt_fix_expanded.R` read the retired Gamma(3, 3) archive `cone_interior_expanded_gamma33.rds`)
 delta_scaling_regime_sweep.R ──> delta_scaling_regime_sweep.rds ──> fig_delta_scaling_regime.R
 marginal_offdiag_sweep.R ──> marginal_offdiag.rds ──┬─> fig_realized_conditional_slab.R
 partial_correlation_sweep.R ──> partial_correlation.rds ─┴─> fig_specified_vs_realized.R
@@ -142,7 +145,7 @@ Listed by the manuscript section they support. Inputs are archived results the s
 
 | Purpose | Script | Inputs | Outputs |
 |---|---|---|---|
-| Loss of mass and boundary concentration of the untilted construction (data of figure `fig:cone-interior`; Gamma(3, 3) diagonal, as the caption says) | `cone_interior_diagnostics_expanded.R` (uses `R/src/Z_prior_diag.cpp`) | | `cone_interior_expanded.rds` |
+| Loss of mass and boundary concentration of the untilted construction (data of figure `fig:cone-interior`; exponential diagonal of rate one; rerun 2026-10-10, the earlier Gamma(3, 3) run is retired as `cone_interior_expanded_gamma33.rds`) | `cone_interior_diagnostics_expanded.R` (uses `R/src/Z_prior_diag.cpp`) | | `cone_interior_expanded.rds` |
 | Figure `fig:cone-interior` | `fig_cone_interior_expanded.R` | `cone_interior_expanded.rds` | `figures/cone_interior.pdf` |
 | Tilt required to hold the median smallest eigenvalue, by regime; contains the V3 gate | `delta_scaling_regime_sweep.R` | | `delta_scaling_regime_sweep.rds`, `.log` |
 | Figure `fig:delta-scaling`, the inversion to the required tilt, and the console numbers for $c(0)$ and the partial-correlation dispersion quoted in the monotonicity section | `fig_delta_scaling_regime.R` | `delta_scaling_regime_sweep.rds` | `figures/delta_scaling_regime.pdf`, `delta_scaling_regime_inversion.rds` |
