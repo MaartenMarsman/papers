@@ -1,0 +1,2 @@
+[2026-10-13 19:44:46] start marginal_offdiag_sweep
+[2026-10-13 20:48:22] part-2 driver stopped by hand; marginal_offdiag_sweep left running; rho_uniform_calibration started now via part-3 driver (max_inner_tries raised to 1e6)

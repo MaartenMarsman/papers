@@ -1,0 +1,19 @@
+== joint chain block timing (delta = 0.5 log q, p_inc = 4/(q-1), n = 2q) ==
+   q sweep_ms node_ms cand_us accept_extra_us acc_rate  E_m
+  20   0.0402 0.00201  0.0355            1.24   0.1520 16.6
+  50   0.2485 0.00497  0.0377            4.30   0.0452 29.8
+ 100   1.7276 0.01728  0.0451           16.41   0.0159 41.8
+
+== hierarchical per-candidate cost (coupled estimator, ms per candidate) ==
+   q     N reps cand_ms
+  20   100 1000   0.262
+  20  1000  100   2.605
+  20 10000   10  26.012
+  50   100  400   1.322
+  50  1000   40  13.199
+  50 10000    4 131.953
+ 100   100  200   7.663
+ 100  1000   20  76.247
+ 100 10000    2 763.337
+
+Saved tables/timing_scaling.tex and R/results/timing_scaling.rds

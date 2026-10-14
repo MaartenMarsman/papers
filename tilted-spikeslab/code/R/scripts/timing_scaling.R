@@ -10,19 +10,38 @@
 # (2N auxiliary Cholesky completions) as a function of N and q, measured on
 # standalone calls at an Erdos-Renyi graph of expected degree 4.
 #
+# 2026-10-13: replicate runs added (N_REP independent chains / timing batches
+# per cell, table reports the mean, the log and rds also the min and max), and
+# the measurement environment is recorded in the rds and printed. The archived
+# 2026-07-28 single-run version is in R/results/superseded_2026-10-13/.
+#
 # Output: R/results/timing_scaling.rds (+ log), tables/timing_scaling.tex
 
 suppressPackageStartupMessages(library(Rcpp))
 PROJECT_ROOT <- Sys.getenv("SPIKESLAB_ROOT", unset = getwd())
 sourceCpp(file.path(PROJECT_ROOT, "R", "src", "spikeslab_sampler.cpp"))
 
+N_REP <- 5L
+env <- list(
+  date = format(Sys.time(), "%Y-%m-%d %H:%M"),
+  cpu = tryCatch(system("sysctl -n machdep.cpu.brand_string", intern = TRUE), error = function(e) NA_character_),
+  os = paste(Sys.info()[["sysname"]], Sys.info()[["release"]]),
+  r_version = R.version.string,
+  blas = extSoftVersion()[["BLAS"]],
+  lapack = La_library(),
+  compiler = paste(system("R CMD config CXX", intern = TRUE), system("R CMD config CXXFLAGS", intern = TRUE)),
+  rcpp = as.character(packageVersion("Rcpp")),
+  rcpparmadillo = as.character(packageVersion("RcppArmadillo")),
+  threads = "single R process; reference BLAS; no OpenMP in the sampler")
+cat("== environment ==\n"); for (k in names(env)) cat(sprintf("  %-14s %s\n", k, env[[k]]))
+
 qs <- c(20L, 50L, 100L)
 Ns <- c(100L, 1000L, 10000L)
 
 ## ---- joint chain block timing ----
 rows <- list()
-for (q in qs) {
-  set.seed(8801L)
+for (rep in seq_len(N_REP)) for (q in qs) {
+  set.seed(8801L + rep)
   n <- 2L * q
   Y <- matrix(rnorm(n * q), n, q)
   S <- crossprod(Y)
@@ -36,7 +55,7 @@ for (q in qs) {
   tm <- ch$timing
   M <- q * (q - 1) / 2
   rows[[length(rows) + 1L]] <- data.frame(
-    q = q,
+    rep = rep, q = q, n_att = unname(tm["n_att"]), n_acc = unname(tm["n_acc"]),
     sweep_ms = 1e3 * tm["sweep_s"] / n_iter,
     node_ms = 1e3 * tm["sweep_s"] / (n_iter * q),
     cand_us = 1e6 * (tm["toggle_s"] - tm["accept_s"]) / tm["n_att"],
@@ -44,10 +63,18 @@ for (q in qs) {
     acc_rate = tm["n_acc"] / tm["n_att"],
     E_m = ch$E_m)
 }
-chain_tab <- do.call(rbind, rows)
-rownames(chain_tab) <- NULL
-cat("== joint chain block timing (delta = 0.5 log q, p_inc = 4/(q-1), n = 2q) ==\n")
+chain_rep <- do.call(rbind, rows)
+rownames(chain_rep) <- NULL
+metrics <- c("sweep_ms", "node_ms", "cand_us", "accept_extra_us", "acc_rate", "E_m")
+chain_tab <- aggregate(chain_rep[, metrics], by = list(q = chain_rep$q), FUN = mean)
+chain_min <- aggregate(chain_rep[, metrics], by = list(q = chain_rep$q), FUN = min)
+chain_max <- aggregate(chain_rep[, metrics], by = list(q = chain_rep$q), FUN = max)
+cat(sprintf("== joint chain block timing, mean over %d replicate chains (delta = 0.5 log q, p_inc = 4/(q-1), n = 2q, %d iterations) ==\n", N_REP, 200L))
 print(chain_tab, row.names = FALSE, digits = 3)
+cat("-- min over replicates --\n"); print(chain_min, row.names = FALSE, digits = 3)
+cat("-- max over replicates --\n"); print(chain_max, row.names = FALSE, digits = 3)
+cat("-- candidate evaluations per chain (n_att) and accepted toggles (n_acc), replicate 1 --\n")
+print(chain_rep[chain_rep$rep == 1, c("q", "n_att", "n_acc")], row.names = FALSE)
 
 ## ---- hierarchical estimator per-candidate cost ----
 er_graph <- function(q, seed) {
@@ -59,13 +86,13 @@ er_graph <- function(q, seed) {
   G
 }
 est_rows <- list()
-for (q in qs) {
+for (trep in seq_len(N_REP)) for (q in qs) {
   G <- er_graph(q, 8901L)
   absent <- which(upper.tri(matrix(0, q, q)) & G == 0, arr.ind = TRUE)
   pick <- absent[1 + (seq_len(5) * 37) %% nrow(absent), , drop = FALSE]
   for (N in Ns) {
     reps <- max(2L, as.integer(2e6 / N / q))
-    set.seed(8902L)
+    set.seed(8902L + trep)
     t0 <- Sys.time()
     for (r in seq_len(reps)) {
       e <- pick[1 + (r - 1) %% nrow(pick), ]
@@ -73,14 +100,20 @@ for (q in qs) {
     }
     per_call <- as.numeric(difftime(Sys.time(), t0, units = "secs")) / reps
     est_rows[[length(est_rows) + 1L]] <- data.frame(
-      q = q, N = N, reps = reps, cand_ms = 1e3 * per_call)
+      trep = trep, q = q, N = N, reps = reps, cand_ms = 1e3 * per_call)
   }
 }
-est_tab <- do.call(rbind, est_rows)
-cat("\n== hierarchical per-candidate cost (coupled estimator, ms per candidate) ==\n")
+est_rep <- do.call(rbind, est_rows)
+est_tab <- aggregate(est_rep["cand_ms"], by = list(q = est_rep$q, N = est_rep$N), FUN = mean)
+est_tab$reps <- aggregate(est_rep["reps"], by = list(q = est_rep$q, N = est_rep$N), FUN = max)$reps
+est_tab$cand_ms_min <- aggregate(est_rep["cand_ms"], by = list(q = est_rep$q, N = est_rep$N), FUN = min)$cand_ms
+est_tab$cand_ms_max <- aggregate(est_rep["cand_ms"], by = list(q = est_rep$q, N = est_rep$N), FUN = max)$cand_ms
+est_tab <- est_tab[order(est_tab$q, est_tab$N), ]
+cat(sprintf("\n== hierarchical per-candidate cost (coupled estimator, ms per candidate; mean, min, max over %d timing batches of reps calls) ==\n", N_REP))
 print(est_tab, row.names = FALSE, digits = 3)
 
-saveRDS(list(chain = chain_tab, estimator = est_tab),
+saveRDS(list(chain = chain_tab, chain_min = chain_min, chain_max = chain_max, chain_replicates = chain_rep,
+             estimator = est_tab, estimator_replicates = est_rep, env = env, n_rep = N_REP),
         file.path(PROJECT_ROOT, "R", "results", "timing_scaling.rds"))
 
 ## ---- table ----

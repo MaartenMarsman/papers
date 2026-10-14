@@ -125,15 +125,22 @@ Rcpp::List gwishart_slab_resample_cpp(int q,
       K *= inv_2beta;
       K = arma::symmatu(K);  // enforce exact symmetry against floating-point drift
 
-      // Slab log-weight on edges of E
+      // Acceptance log-weight: slab weight on the edges of E plus the
+      // completion weight f_E(Phi) = exp(-1/2 sum_{(i,j) not in E} Phi_ij^2)
+      // of the Atay-Kayis and Massam proposal (added 2026-10-13; until then
+      // the slab weight alone was used, which targets proposal * w rather
+      // than the tilted prior, see notes/rejection-sampler-completion-weight.md).
       double log_w = 0.0;
       for (int i = 0; i < q - 1; ++i) {
         for (int j = i + 1; j < q; ++j) {
           if (E(i, j) == 1) {
             log_w -= K(i, j) * K(i, j) * inv_2sigma2;
+          } else {
+            log_w -= 0.5 * Phi(i, j) * Phi(i, j);
           }
         }
       }
+      if (!K.is_finite() || !std::isfinite(log_w)) continue;
       if (std::log(R::unif_rand()) >= log_w) continue;
 
       // Accept this (Gamma, K) draw

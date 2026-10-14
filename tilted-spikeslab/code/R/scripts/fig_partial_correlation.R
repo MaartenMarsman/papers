@@ -29,6 +29,11 @@ tab <- obj$summary
 # For each q, tag delta = 0 as "untilted" and the delta closest to 0.5 log q
 # as "adaptive".
 qs <- sort(unique(sapply(results, function(r) r$q)))
+# Restrict to the dimensions reported in the text (q <= 20), where at least
+# 94 percent of the proposed graphs are kept by the rejection sampler; at
+# q = 30 the discard rule removes up to 44 percent of the graphs at delta = 2
+# (2026-10-13 rerun with the corrected sampler), which biases the graph mixture.
+qs <- qs[qs <= 20L]
 pick <- function(q, which) {
   cand <- Filter(function(r) r$q == q && length(r$rho) > 30L, results)
   if (length(cand) == 0) return(NULL)

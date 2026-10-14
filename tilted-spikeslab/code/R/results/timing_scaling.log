@@ -1,19 +1,43 @@
-== joint chain block timing (delta = 0.5 log q, p_inc = 4/(q-1), n = 2q) ==
+== environment ==
+  date           2026-10-13 23:30
+  cpu            Apple M5 Pro
+  os             Darwin 25.6.0
+  r_version      R version 4.6.0 (2026-04-24)
+  blas           /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRblas.0.dylib
+  lapack         /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRlapack.dylib
+  compiler       clang++ -arch arm64 -std=gnu++20 -falign-functions=64 -Wall -g -O2
+  rcpp           1.1.2
+  rcpparmadillo  15.4.2.1
+  threads        single R process; reference BLAS; no OpenMP in the sampler
+== joint chain block timing, mean over 5 replicate chains (delta = 0.5 log q, p_inc = 4/(q-1), n = 2q, 200 iterations) ==
    q sweep_ms node_ms cand_us accept_extra_us acc_rate  E_m
-  20   0.0402 0.00201  0.0355            1.24   0.1520 16.6
-  50   0.2485 0.00497  0.0377            4.30   0.0452 29.8
- 100   1.7276 0.01728  0.0451           16.41   0.0159 41.8
-
-== hierarchical per-candidate cost (coupled estimator, ms per candidate) ==
-   q     N reps cand_ms
-  20   100 1000   0.262
-  20  1000  100   2.605
-  20 10000   10  26.012
-  50   100  400   1.322
-  50  1000   40  13.199
-  50 10000    4 131.953
- 100   100  200   7.663
- 100  1000   20  76.247
- 100 10000    2 763.337
-
+  20    0.037 0.00185  0.0341            1.13   0.1555 16.5
+  50    0.226 0.00451  0.0347            3.95   0.0433 28.6
+ 100    1.556 0.01556  0.0390           14.98   0.0160 41.6
+-- min over replicates --
+   q sweep_ms node_ms cand_us accept_extra_us acc_rate  E_m
+  20   0.0349 0.00175  0.0331            1.12   0.1414 14.4
+  50   0.2244 0.00449  0.0346            3.92   0.0412 26.6
+ 100   1.5437 0.01544  0.0388           14.87   0.0154 38.9
+-- max over replicates --
+   q sweep_ms node_ms cand_us accept_extra_us acc_rate  E_m
+  20   0.0396 0.00198  0.0352            1.17   0.1672 17.7
+  50   0.2267 0.00453  0.0348            3.98   0.0453 30.8
+ 100   1.5883 0.01588  0.0394           15.27   0.0167 44.1
+-- candidate evaluations per chain (n_att) and accepted toggles (n_acc), replicate 1 --
+   q  n_att n_acc
+  20  38000  5988
+  50 245000 10100
+ 100 990000 15644
+== hierarchical per-candidate cost (coupled estimator, ms per candidate; mean, min, max over 5 timing batches of reps calls) ==
+   q     N cand_ms reps cand_ms_min cand_ms_max
+  20   100   0.246 1000       0.244       0.249
+  20  1000   2.426  100       2.415       2.457
+  20 10000  24.190   10      23.978      24.529
+  50   100   1.217  400       1.215       1.220
+  50  1000  12.140   40      12.072      12.306
+  50 10000 121.313    4     120.619     123.115
+ 100   100   7.033  200       7.026       7.043
+ 100  1000  70.348   20      70.115      70.638
+ 100 10000 703.927    2     701.810     709.534
 Saved tables/timing_scaling.tex and R/results/timing_scaling.rds

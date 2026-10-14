@@ -103,10 +103,20 @@ Rcpp::List gwishart_slab_record_rho_cpp(int q,
       K = Phi.t() * Phi;
       K *= inv_2beta;
       K = arma::symmatu(K);
+      // Acceptance weight = slab weight w(K) on the edges of E times the
+      // completion weight f_E(Phi) = exp(-1/2 sum_{(i,j) not in E, i<j} Phi_ij^2)
+      // of the Atay-Kayis and Massam (2005) proposal. The proposal draws the
+      // free Cholesky entries from their G-Wishart marginals and completes the
+      // non-free ones deterministically, so its density relative to the
+      // G-Wishart distribution is 1/f_E; accepting with w alone (as this code
+      // did until 2026-10-13) targets proposal * w, not G-Wishart * w, and
+      // overstates the spread of the included entries. Both factors lie in
+      // (0, 1], so the rejection step is valid with the proposal as envelope.
       double log_w = 0.0;
       for (int i = 0; i < q - 1; ++i) {
         for (int j = i + 1; j < q; ++j) {
           if (E(i, j) == 1) log_w -= K(i, j) * K(i, j) * inv_2sigma2;
+          else              log_w -= 0.5 * Phi(i, j) * Phi(i, j);
         }
       }
       // A proposal whose completion overflowed (non-finite entries, which

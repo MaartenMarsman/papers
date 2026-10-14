@@ -56,14 +56,18 @@ run_one <- function(cell) {
   res <- gwishart_slab_record_rho_cpp(
     q=cell$q, delta=cell$delta, beta=BETA, sigma=cell$sigma,
     gamma_prob=cell$p_inc, n_target=n_target, n_proposal_cap=cell$cap,
-    max_inner_tries=10000L, seed=cell$seed, condition_on_edge_01=TRUE)
+    # max_inner_tries raised from 1e4 to 1e6 on 2026-10-13, as in the other two
+    # sweeps (2026-10-09), so that graphs are not dropped for low acceptance;
+    # the kept fraction is recorded per cell.
+    max_inner_tries=1000000L, seed=cell$seed, condition_on_edge_01=TRUE)
   on <- res$gamma12 == 1
   rho <- -res$k12[on] / sqrt(res$k11[on] * res$k22[on])
   rho <- rho[is.finite(rho)]
   data.frame(q=cell$q, delta=cell$delta, sigma=cell$sigma, n=length(rho),
              rho_sd=sd(rho), beta_hat=fit_beta(rho),
              p_gt_0.5=mean(abs(rho) > 0.5),
-             n_acc=res$n_accepted, n_prop=res$n_proposals)
+             n_acc=res$n_accepted, n_prop=res$n_proposals,
+             kept_frac=res$n_graphs_kept / max(res$n_graphs_tried, 1))
 }
 
 t0 <- Sys.time()
