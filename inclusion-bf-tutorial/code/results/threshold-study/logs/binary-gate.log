@@ -35,7 +35,7 @@ targets: constant rows 0.273, mean |phi| 0.456
 
 === which cells must be rerun? ===
 The first arm ran at scale 1.0 throughout. A cell is kept only if its
-chosen scale is within 10% of 1.0 (the brief's tolerance).
+chosen scale is within 10% of 1.0 (the design tolerance).
  density scale  keep
      0.2 2.000 FALSE
      0.4 1.000  TRUE
