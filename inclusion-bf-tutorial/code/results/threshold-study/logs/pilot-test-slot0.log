@@ -1,0 +1,6 @@
+worker pilot-test slot 0/3: 4 fits, 4 cores, nboot 99
+[10:04:46] done binary-d40-s1-n200-default-seed1 in 14.2 s (1/4)
+[10:05:35] done binary-d40-s1-n200-long-seed1 in 48.6 s (2/4)
+[10:06:35] done binary-d40-s1-n1000-default-seed1 in 60.1 s (3/4)
+[10:10:19] done binary-d40-s1-n1000-long-seed1 in 223.8 s (4/4)
+worker pilot-test slot 0 finished

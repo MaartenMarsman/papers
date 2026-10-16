@@ -1,0 +1,124 @@
+=== TRANSFER CHECK: stage-1 rules applied unchanged to every arm ===
+(ordinal is the arm the rules were calibrated on; binary and GGM are the test)
+
+     arm      class                       rule n_total n_pass pass_rate
+  binary  indicator             two-state flag    6260   6168     0.985
+  binary  indicator RB 2 SE, else chains agree    6260   6186     0.988
+  binary  indicator        PAIR: both channels    6260   6165     0.985
+  binary     weight        derived ESS >= 1000    6300   6298     1.000
+  binary continuous          split-Rhat < 1.01     900    900     1.000
+     ggm  indicator             two-state flag    6170   5961     0.966
+     ggm  indicator RB 2 SE, else chains agree    6170   6070     0.984
+     ggm  indicator        PAIR: both channels    6170   5878     0.953
+     ggm     weight        derived ESS >= 1000    6300   6211     0.986
+     ggm continuous          split-Rhat < 1.01     900    900     1.000
+   ggmnb  indicator             two-state flag   12300  11989     0.975
+   ggmnb  indicator RB 2 SE, else chains agree   12300  12162     0.989
+   ggmnb  indicator        PAIR: both channels   12300  11851     0.963
+   ggmnb     weight        derived ESS >= 1000   12600  12598     1.000
+   ggmnb continuous          split-Rhat < 1.01    1800   1800     1.000
+ ordinal  indicator             two-state flag   12280  11965     0.974
+ ordinal  indicator RB 2 SE, else chains agree   12280  12013     0.978
+ ordinal  indicator        PAIR: both channels   12280  11943     0.973
+ ordinal     weight        derived ESS >= 1000   12600  11612     0.922
+ ordinal continuous          split-Rhat < 1.01    7200   7182     0.998
+ base_error_rate errors_after_rule error_rate error_upper95 recall     cost
+        0.000958                 0   0.000000      0.000438  1.000 0.013751
+        0.000958                 0   0.000000      0.000437  1.000 0.010873
+        0.000958                 0   0.000000      0.000439  1.000 0.014231
+        0.000000                 0   0.000000      0.000429     NA 0.000317
+        0.000000                 0   0.000000      0.002997     NA 0.000000
+        0.002107                 9   0.001510      0.002593  0.308 0.033295
+        0.002107                 0   0.000000      0.000446  1.000 0.014130
+        0.002107                 0   0.000000      0.000460  1.000 0.045314
+        0.003333                10   0.001610      0.002691  0.524 0.012422
+        0.000000                 0   0.000000      0.002997     NA 0.000000
+        0.000650                 8   0.000667      0.001184  0.000 0.025301
+        0.000650                 0   0.000000      0.000222  1.000 0.010576
+        0.000650                 0   0.000000      0.000228  1.000 0.035877
+        0.000000                 0   0.000000      0.000215     NA 0.000159
+        0.000000                 0   0.000000      0.001501     NA 0.000000
+        0.003176                 0   0.000000      0.000226  1.000 0.022547
+        0.003176                 4   0.000333      0.000741  0.897 0.018953
+        0.003176                 0   0.000000      0.000226  1.000 0.024344
+        0.005317                 5   0.000431      0.000884  0.925 0.073885
+        0.000139                 0   0.000000      0.000377  1.000 0.002361
+
+=== gradeable share and reference verdicts by arm ===
+         gradeable
+arm       FALSE TRUE
+  binary      4  626
+  ggm        13  617
+  ggmnb      15  615
+  ordinal    32 1228
+         verdict
+arm       absence presence undecided
+  binary       21      142       467
+  ggm         289      174       167
+  ggmnb       308      135       187
+  ordinal     607      370       283
+
+=== where verdict errors live, by arm ===
+         band
+arm       within 0.25 of a boundary beyond 0.25
+  binary                          6           0
+  ggm                            13           0
+  ggmnb                           8           0
+  ordinal                        39           0
+
+edge-fits in each cell:
+         band
+arm       within 0.25 of a boundary beyond 0.25
+  binary                       1120        5140
+  ggm                          2060        4110
+  ggmnb                        4520        7780
+  ordinal                      2000       10280
+
+=== verdict: does each rule still catch what it was chosen to catch? ===
+     arm      class                       rule base_error_rate recall    cost
+  binary  indicator             two-state flag        0.000958  1.000 0.01375
+  binary  indicator RB 2 SE, else chains agree        0.000958  1.000 0.01087
+  binary  indicator        PAIR: both channels        0.000958  1.000 0.01423
+     ggm  indicator             two-state flag        0.002107  0.308 0.03330
+     ggm  indicator RB 2 SE, else chains agree        0.002107  1.000 0.01413
+     ggm  indicator        PAIR: both channels        0.002107  1.000 0.04531
+     ggm     weight        derived ESS >= 1000        0.003333  0.524 0.01242
+   ggmnb  indicator             two-state flag        0.000650  0.000 0.02530
+   ggmnb  indicator RB 2 SE, else chains agree        0.000650  1.000 0.01058
+   ggmnb  indicator        PAIR: both channels        0.000650  1.000 0.03588
+ ordinal  indicator             two-state flag        0.003176  1.000 0.02255
+ ordinal  indicator RB 2 SE, else chains agree        0.003176  0.897 0.01895
+ ordinal  indicator        PAIR: both channels        0.003176  1.000 0.02434
+ ordinal     weight        derived ESS >= 1000        0.005317  0.925 0.07388
+ ordinal continuous          split-Rhat < 1.01        0.000139  1.000 0.00236
+ transfers
+      TRUE
+      TRUE
+      TRUE
+     FALSE
+      TRUE
+      TRUE
+     FALSE
+     FALSE
+      TRUE
+      TRUE
+      TRUE
+      TRUE
+      TRUE
+      TRUE
+      TRUE
+
+TRANSFER FAILS (recall below 80%) for:
+  ggm / indicator: recall 0.31 -- the rule misses 9 of 13 errors
+  ggm / weight: recall 0.52 -- the rule misses 10 of 21 errors
+  ggmnb / indicator: recall 0.00 -- the rule misses 8 of 8 errors
+
+Per the design, only an arm whose transfer fails earns its own
+calibration pass; that is MM's call, not this script's.
+
+=== does the boundary localization transfer? ===
+     arm errors errors_within_025 share_within_025
+  binary      6                 6                1
+     ggm     13                13                1
+   ggmnb      8                 8                1
+ ordinal     39                39                1

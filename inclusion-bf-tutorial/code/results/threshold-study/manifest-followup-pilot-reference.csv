@@ -1,0 +1,3 @@
+"fit_id","stage","arm","kind","dataset_id","density","n","data_seed","setting","iter","warmup","chains","sampler_seed"
+"binary-d20-s1-n200-reference-truncated",2,"binary","reference","binary-d20-s1-n200",0.2,200,1,"reference-truncated",2500,2000,12,99
+"ggmnb-n500-s1-reference-truncated",3,"ggmnb","reference","ggmnb-n500-s1",0.4,500,1,"reference-truncated",2500,2000,12,99

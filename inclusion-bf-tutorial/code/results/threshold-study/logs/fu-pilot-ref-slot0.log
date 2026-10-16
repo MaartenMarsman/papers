@@ -1,0 +1,4 @@
+worker fu-pilot-ref slot 0/1: 2 fits, 12 cores, nboot 99
+[18:20:39] done binary-d20-s1-n200-reference-truncated in 16.8 s (1/2)
+[18:20:39] FAILED ggmnb-n500-s1-reference-truncated: Only unique responses observed for variable 1. We expect >= 1 observations per category.
+worker fu-pilot-ref slot 0 finished

@@ -1,0 +1,11 @@
+"setting","flips","Freq"
+"default","0 (settled)",107
+"long","0 (settled)",98
+"default","1-50",35
+"long","1-50",28
+"default","51-500",193
+"long","51-500",31
+"default","501-2000",221
+"long","501-2000",142
+"default",">2000",74
+"long",">2000",331

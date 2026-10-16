@@ -1,0 +1,6 @@
+worker pilot-test slot 1/3: 4 fits, 4 cores, nboot 99
+[10:04:37] done ggm-d40-s1-n200-default-seed1 in 4.7 s (1/4)
+[10:04:49] done ggm-d40-s1-n200-long-seed1 in 12.4 s (2/4)
+[10:04:51] done ggm-d40-s1-n1000-default-seed1 in 2.1 s (3/4)
+[10:05:00] done ggm-d40-s1-n1000-long-seed1 in 8.8 s (4/4)
+worker pilot-test slot 1 finished

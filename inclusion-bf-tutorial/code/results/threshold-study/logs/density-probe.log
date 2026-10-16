@@ -1,0 +1,8 @@
+worker density-probe slot 0/2: 2 fits, 4 cores, nboot 99
+worker density-probe slot 1/2: 2 fits, 4 cores, nboot 99
+[10:23:44] done ordinal-d20-s1-n1000-default-seed1 in 132.9 s (1/2)
+[10:26:18] done ordinal-d60-s1-n1000-default-seed1 in 154.3 s (2/2)
+worker density-probe slot 0 finished
+[10:27:34] done ordinal-d20-s1-n1000-long-seed1 in 362.9 s (1/2)
+[10:40:26] done ordinal-d60-s1-n1000-long-seed1 in 771.8 s (2/2)
+worker density-probe slot 1 finished

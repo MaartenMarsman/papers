@@ -1,0 +1,6 @@
+worker pilot-test slot 2/3: 4 fits, 4 cores, nboot 99
+[10:05:03] done ordinal-d40-s1-n200-default-seed1 in 31.5 s (1/4)
+[10:06:36] done ordinal-d40-s1-n200-long-seed1 in 92.8 s (2/4)
+[10:09:01] done ordinal-d40-s1-n1000-default-seed1 in 144.7 s (3/4)
+[10:15:33] done ordinal-d40-s1-n1000-long-seed1 in 391.6 s (4/4)
+worker pilot-test slot 2 finished

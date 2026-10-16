@@ -1,0 +1,204 @@
+stage 1: 132 of 132 fits checkpointed (120 test, 12 reference)
+
+reference edges: 1260; gradeable 1228 (97.5%), within 4 SE of a boundary 32 (2.5%)
+reference verdicts:
+
+  absence  presence undecided 
+      607       370       283 
+
+reference verdict against the generating edge (data, not sampler):
+           true_edge
+verdict     FALSE TRUE
+  absence     582   25
+  presence     15  355
+  undecided   159  124
+
+graded test edge-fits: 12280; raw verdict error rate 0.318%
+
+=== INDICATOR CLASS: frontier at 5% conditional verdict error ===
+                                                               rule n_total
+                                                  accept everything   12280
+                                            pip chain range <= 0.20   12280
+   TREE pair: n_eff_mixt >= 200 & rhat_rb < 1.05, else chains agree   12280
+ TREE pair: n_eff_mixt >= 200 & rhat_rb < 1.05, else agreement test   12280
+                                            agreement p_boot > 0.01   12280
+                                                        not fragile   12280
+            TREE settled: chains agree if settled, else not fragile   12280
+                                            chains agree on verdict   12280
+ n_pass pass_rate errors error_rate error_upper95
+  12280     1.000     39   3.18e-03      0.004128
+  12237     0.996     39   3.19e-03      0.004142
+  12214     0.995     36   2.95e-03      0.003872
+  12214     0.995     36   2.95e-03      0.003872
+  12108     0.986     37   3.06e-03      0.003999
+  11965     0.974      0   0.00e+00      0.000226
+  11965     0.974      0   0.00e+00      0.000226
+  11933     0.972      1   8.38e-05      0.000376
+
+=== INDICATOR CLASS: frontier at 1% ===
+                                                               rule n_total
+                                                  accept everything   12280
+                                            pip chain range <= 0.20   12280
+   TREE pair: n_eff_mixt >= 200 & rhat_rb < 1.05, else chains agree   12280
+ TREE pair: n_eff_mixt >= 200 & rhat_rb < 1.05, else agreement test   12280
+                                            agreement p_boot > 0.01   12280
+                                                        not fragile   12280
+            TREE settled: chains agree if settled, else not fragile   12280
+                                            chains agree on verdict   12280
+ n_pass pass_rate errors error_rate error_upper95
+  12280     1.000     39   3.18e-03      0.004128
+  12237     0.996     39   3.19e-03      0.004142
+  12214     0.995     36   2.95e-03      0.003872
+  12214     0.995     36   2.95e-03      0.003872
+  12108     0.986     37   3.06e-03      0.003999
+  11965     0.974      0   0.00e+00      0.000226
+  11965     0.974      0   0.00e+00      0.000226
+  11933     0.972      1   8.38e-05      0.000376
+
+=== INDICATOR CLASS: error catching ===
+                                                        rule wrong_total caught
+                                                 not fragile          39     39
+     TREE settled: chains agree if settled, else not fragile          39     39
+  TREE fragile+flips: not fragile & (flips >= 50 or settled)          39     39
+ TREE fragile+flips: not fragile & (flips >= 100 or settled)          39     39
+ TREE fragile+flips: not fragile & (flips >= 500 or settled)          39     39
+                                       |log10 BF| - 1 >= 0.3          39     39
+                                       |log10 BF| - 1 >= 0.5          39     39
+                                       |log10 BF| - 1 >= 1.0          39     39
+                                     chains agree on verdict          39     38
+                                         total_flips >= 2000          39     38
+                                     pip chain range <= 0.02          39     35
+                                          n_eff_mixt >= 2000          39     34
+ recall   cost precision
+  1.000 0.0225   0.12381
+  1.000 0.0225   0.12381
+  1.000 0.0668   0.04551
+  1.000 0.0801   0.03824
+  1.000 0.3425   0.00922
+  1.000 0.3636   0.00869
+  1.000 0.5071   0.00624
+  1.000 0.7289   0.00435
+  0.974 0.0252   0.10951
+  0.974 0.8430   0.00367
+  0.897 0.2519   0.01123
+  0.872 0.4103   0.00672
+
+=== where verdict errors live (distance of the TRUE log10 BF from a boundary) ===
+     band edge_fits error_rate errors
+     <0.1       640    0.04219     27
+ 0.1-0.25      1360    0.00882     12
+ 0.25-0.5      3000    0.00000      0
+    0.5-1      4040    0.00000      0
+       >1      3240    0.00000      0
+
+=== INDICATOR CLASS, near-boundary edges only (n = 2000, base error 1.95%) ===
+                                                        rule n_total n_pass
+                                                 not fragile    2000   1694
+     TREE settled: chains agree if settled, else not fragile    2000   1694
+  TREE fragile+flips: not fragile & (flips >= 50 or settled)    2000   1689
+ TREE fragile+flips: not fragile & (flips >= 100 or settled)    2000   1678
+ TREE fragile+flips: not fragile & (flips >= 500 or settled)    2000   1350
+                                       |log10 BF| - 1 >= 0.3    2000     32
+                                       |log10 BF| - 1 >= 0.5    2000     10
+                                       |log10 BF| - 1 >= 1.0    2000      4
+                                     chains agree on verdict    2000   1676
+                                         total_flips >= 2000    2000    691
+ pass_rate errors error_rate error_upper95
+     0.847      0   0.000000       0.00159
+     0.847      0   0.000000       0.00159
+     0.845      0   0.000000       0.00160
+     0.839      0   0.000000       0.00161
+     0.675      0   0.000000       0.00200
+     0.016      0   0.000000       0.07796
+     0.005      0   0.000000       0.21294
+     0.002      0   0.000000       0.40348
+     0.838      1   0.000597       0.00267
+     0.345      1   0.001447       0.00646
+
+=== MIXED-WEIGHT CLASS: frontier at 5% (MC error > 0.1 posterior SD) ===
+                                    rule n_total n_pass pass_rate errors
+                     weight n_eff >= 100   12600  12600     1.000     67
+                       accept everything   12600  12600     1.000     67
+                     weight rhat < 1.050   12600  12592     0.999     65
+                     weight rhat < 1.020   12600  12506     0.993     62
+                     weight n_eff >= 400   12600  12455     0.988     50
+                     weight rhat < 1.010   12600  12178     0.967     44
+ TREE weight: rhat < 1.01 & n_eff >= 400   12600  12151     0.964     41
+                    weight n_eff >= 1000   12600  11612     0.922      5
+ error_rate error_upper95 mcse_miscoverage
+   0.005317      0.006495            0.120
+   0.005317      0.006495            0.120
+   0.005162      0.006324            0.120
+   0.004958      0.006103            0.121
+   0.004014      0.005060            0.121
+   0.003613      0.004624            0.121
+   0.003374      0.004357            0.121
+   0.000431      0.000884            0.122
+
+=== CONTINUOUS CLASS: frontier at 5% (MC error > 0.1 posterior SD) ===
+                             rule n_total n_pass pass_rate errors error_rate
+                     rhat < 1.050    7200   7200     1.000      1   0.000139
+                     n_eff >= 100    7200   7200     1.000      1   0.000139
+                     n_eff >= 400    7200   7200     1.000      1   0.000139
+                accept everything    7200   7200     1.000      1   0.000139
+                     rhat < 1.020    7200   7196     0.999      1   0.000139
+ TREE: rhat < 1.02 & n_eff >= 400    7200   7196     0.999      1   0.000139
+                     rhat < 1.010    7200   7182     0.998      0   0.000000
+ TREE: rhat < 1.01 & n_eff >= 400    7200   7182     0.998      0   0.000000
+ error_upper95 mcse_miscoverage
+      0.000622           0.0963
+      0.000622           0.0963
+      0.000622           0.0963
+      0.000622           0.0963
+      0.000623           0.0960
+      0.000623           0.0960
+      0.000377           0.0952
+      0.000377           0.0952
+
+by block (main = category thresholds, quadratic = GGM precisions):
+      wrong
+block  FALSE TRUE
+  main  7199    1
+
+=== STABILITY of "not fragile" ===
+        rule density    n setting n_total n_pass pass_rate error_rate
+ not fragile     0.2  200 default    1025    993     0.969          0
+ not fragile     0.4  200 default    1020    960     0.941          0
+ not fragile     0.6  200 default     995    925     0.930          0
+ not fragile     0.2 1000 default    1035   1010     0.976          0
+ not fragile     0.4 1000 default    1040   1029     0.989          0
+ not fragile     0.6 1000 default    1025    976     0.952          0
+ not fragile     0.2  200    long    1025   1018     0.993          0
+ not fragile     0.4  200    long    1020    999     0.979          0
+ not fragile     0.6  200    long     995    982     0.987          0
+ not fragile     0.2 1000    long    1035   1027     0.992          0
+ not fragile     0.4 1000    long    1040   1036     0.996          0
+ not fragile     0.6 1000    long    1025   1010     0.985          0
+ error_upper95
+       0.00272
+       0.00281
+       0.00292
+       0.00267
+       0.00262
+       0.00276
+       0.00265
+       0.00270
+       0.00275
+       0.00263
+       0.00260
+       0.00267
+
+=== FIRST-ORDER MARKOV CHECK on real indicator chains ===
+ edge_fits median_gap_from0 median_gap_from1 q95_abs_gap_from0
+      8488          0.00106           0.0456            0.0262
+ q95_abs_gap_from1 reject_from0_at_1pct reject_from1_at_1pct
+             0.191                0.032                0.413
+(rejection rates far above 1% mean the two-state standard error behind the fragile flag rests on an assumption these chains do not satisfy)
+
+=== Bayes factor threshold sensitivity (descriptive) ===
+ bf_upper bf_lower edge_fits disagreement
+       10   0.1000     12280      0.00318
+        3   0.3333     12280      0.00627
+       30   0.0333     12280      0.01580
+
+stage 1 analysis complete

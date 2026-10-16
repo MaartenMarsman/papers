@@ -1,0 +1,13 @@
+"fit_id","stage","arm","kind","dataset_id","density","n","data_seed","setting","iter","warmup","chains","sampler_seed"
+"binary-d40-s1-n200-default-seed1",2,"binary","test","binary-d40-s1-n200",0.4,200,1,"default",2000,2000,4,1
+"ggm-d40-s1-n200-default-seed1",2,"ggm","test","ggm-d40-s1-n200",0.4,200,1,"default",2000,2000,4,1
+"ordinal-d40-s1-n200-default-seed1",1,"ordinal","test","ordinal-d40-s1-n200",0.4,200,1,"default",2000,2000,4,1
+"binary-d40-s1-n200-long-seed1",2,"binary","test","binary-d40-s1-n200",0.4,200,1,"long",10000,5000,4,1
+"ggm-d40-s1-n200-long-seed1",2,"ggm","test","ggm-d40-s1-n200",0.4,200,1,"long",10000,5000,4,1
+"ordinal-d40-s1-n200-long-seed1",1,"ordinal","test","ordinal-d40-s1-n200",0.4,200,1,"long",10000,5000,4,1
+"binary-d40-s1-n1000-default-seed1",2,"binary","test","binary-d40-s1-n1000",0.4,1000,1,"default",2000,2000,4,1
+"ggm-d40-s1-n1000-default-seed1",2,"ggm","test","ggm-d40-s1-n1000",0.4,1000,1,"default",2000,2000,4,1
+"ordinal-d40-s1-n1000-default-seed1",1,"ordinal","test","ordinal-d40-s1-n1000",0.4,1000,1,"default",2000,2000,4,1
+"binary-d40-s1-n1000-long-seed1",2,"binary","test","binary-d40-s1-n1000",0.4,1000,1,"long",10000,5000,4,1
+"ggm-d40-s1-n1000-long-seed1",2,"ggm","test","ggm-d40-s1-n1000",0.4,1000,1,"long",10000,5000,4,1
+"ordinal-d40-s1-n1000-long-seed1",1,"ordinal","test","ordinal-d40-s1-n1000",0.4,1000,1,"long",10000,5000,4,1

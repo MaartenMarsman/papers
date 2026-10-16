@@ -1,0 +1,6 @@
+worker fu-pilot-test slot 2/3: 4 fits, 4 cores, nboot 99
+[18:16:28] done binary-d20-s1-n1000-default-seed1 in 69.9 s (1/4)
+[18:17:26] done binary-d60-s1-n200-long-seed1 in 57.5 s (2/4)
+[18:17:26] FAILED ggmnb-n200-s1-default-seed1: Only unique responses observed for variable 1. We expect >= 1 observations per category.
+[18:17:26] FAILED ggmnb-n500-s1-long-seed1: Only unique responses observed for variable 1. We expect >= 1 observations per category.
+worker fu-pilot-test slot 2 finished

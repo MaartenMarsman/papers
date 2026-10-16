@@ -1,0 +1,19 @@
+=== binary rerun cells ===
+density 0.2: scale 2.000 -- regenerating
+  binary-d20-s1-n200: constant rows 0.105, mean |phi| 0.414
+  binary-d20-s1-n1000: constant rows 0.115, mean |phi| 0.411
+density 0.4: scale 1.000 is within 10% of 1 -- KEPT, checkpoints untouched
+density 0.6: scale 0.667 -- regenerating
+  binary-d60-s1-n200: constant rows 0.320, mean |phi| 0.668
+  binary-d60-s1-n1000: constant rows 0.340, mean |phi| 0.677
+
+=== GGM near-boundary arm ===
+  n= 200 seed 1: |pcor| in [0.132, 0.201], shrink 0.215, 42 edges
+  n= 200 seed 2: |pcor| in [0.147, 0.223], shrink 0.418, 42 edges
+  n= 500 seed 1: |pcor| in [0.111, 0.170], shrink 1.000, 42 edges
+  n= 500 seed 2: |pcor| in [0.110, 0.170], shrink 1.000, 42 edges
+  n=1000 seed 1: |pcor| in [0.075, 0.115], shrink 1.000, 42 edges
+  n=1000 seed 2: |pcor| in [0.075, 0.115], shrink 1.000, 42 edges
+
+binary fits to rerun: 44 (40 test, 4 reference)
+GGM near-boundary fits to run: 126 (120 test, 6 reference)

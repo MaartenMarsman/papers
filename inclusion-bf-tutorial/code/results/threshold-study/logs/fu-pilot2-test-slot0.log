@@ -1,0 +1,7 @@
+worker fu-pilot2-test slot 0/3: 5 fits, 4 cores, nboot 99
+[18:21:54] skip binary-d20-s1-n200-default-seed1 (checkpoint exists)
+[18:21:54] skip binary-d20-s1-n1000-long-seed1 (checkpoint exists)
+[18:21:54] skip binary-d60-s1-n1000-default-seed1 (checkpoint exists)
+[18:22:04] done ggmnb-n200-s1-long-seed1 in 9.6 s (4/5)
+[18:22:05] done ggmnb-n1000-s1-default-seed1 in 1.8 s (5/5)
+worker fu-pilot2-test slot 0 finished

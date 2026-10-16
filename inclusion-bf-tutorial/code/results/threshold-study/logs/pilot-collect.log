@@ -1,0 +1,70 @@
+=== pilot timings (seconds) ===
+     arm    n             setting chains seconds_fit seconds_observables
+  binary  200             default      4      12.491              1.6710
+     ggm  200             default      4       2.936              1.8120
+ ordinal  200             default      4      30.060              1.4695
+  binary  200                long      4      40.931              7.7102
+     ggm  200                long      4       5.169              7.2071
+ ordinal  200                long      4      86.372              6.4686
+  binary 1000             default      4      58.612              1.4598
+     ggm 1000             default      4       1.286              0.8504
+ ordinal 1000             default      4     143.715              1.0284
+  binary 1000                long      4     215.728              8.0978
+     ggm 1000                long      4       5.048              3.7561
+ ordinal 1000                long      4     387.639              3.9628
+ ordinal 1000 reference-truncated     12     190.520              0.6002
+  binary 1000 reference-truncated     12      95.341              0.5632
+     ggm 1000 reference-truncated     12       3.051              0.6151
+
+=== cost model (seconds per iteration, 4 chains, 3 concurrent) ===
+     arm    n c_warmup  c_sample seconds_observables
+  binary  200 0.004304  0.001941                4.69
+     ggm  200 0.001902 -0.000434                4.51
+ ordinal  200 0.012786  0.002244                3.97
+  binary 1000 0.015466  0.013840                4.78
+     ggm 1000 0.000277  0.000367                2.30
+ ordinal 1000 0.066187  0.005670                2.50
+
+=== density multipliers (ordinal, n = 1000, relative to density 0.4 ) ===
+         density
+setting     0.2   0.4   0.6
+  default 0.917 1.000 1.065
+  long    0.927 1.000 1.980
+
+=== 12-chain penalty (truncated reference vs 4-chain prediction) ===
+     arm    n warmup iter seconds_fit predicted_4chain chain_penalty
+ ordinal 1000   2000 2500      190.52           146.55          1.30
+  binary 1000   2000 2500       95.34            65.53          1.45
+     ggm 1000   2000 2500        3.05             1.47          2.08
+
+=== PROJECTION ===
+ stage     arm      kind fits cpu_hours wall_hours
+     1 ordinal      test  120    6.6910     2.2303
+     1 ordinal reference   12    2.8066     2.8066
+     2  binary      test   60    1.7660     0.5887
+     2  binary reference    6    0.9444     0.9444
+     2     ggm      test   60    0.1297     0.0432
+     2     ggm reference    6    0.0555     0.0555
+
+stage 1 wall clock: 5.0 h   stage 2 wall clock: 1.6 h
+TOTAL wall clock: 6.7 h over 264 fits
+edge-fits: stage 1 12600, stage 2 12600
+
+=== flip-count regime coverage in the pilot fits ===
+         flips
+setting   0 (settled) 1-50 51-500 501-2000 >2000
+  default         107   35    193      221    74
+  long             98   28     31      142   331
+
+=== verdict x truth in the pilot fits (test settings, not truth-graded) ===
+           true_edge
+verdict     FALSE TRUE
+  absence     389   12
+  presence     16  346
+  undecided   351  146
+
+=== log10 BF spread by arm ===
+        edge_fits   q10 median   q90 near_boundary settled
+binary        420 -0.80 -0.140  3.71         0.800  0.0929
+ggm           420 -1.53 -0.907 11.74         0.598  0.1595
+ordinal       420 -1.69 -0.652 33.58         0.533  0.2357

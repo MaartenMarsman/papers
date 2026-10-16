@@ -1,0 +1,37 @@
+=== ordinal calibration (Wenchuan) ===
+  decisive edges: 35; conditional |weight| RMS 0.207 -> 0.200
+  negative sign share: 0.114
+=== binary calibration (ADHD) ===
+  decisive edges: 36; conditional |weight| RMS 0.721 (kept)
+  negative sign share: 0.028
+  endorsement rates of the 15 sampled items: 0.23 - 0.52
+=== networks and data sets ===
+  ordinal density 0.2 seed 1: 21 edges, calibrating...
+    final max|dprop| = 0.0701
+  ordinal density 0.2 seed 2: 21 edges, calibrating...
+    final max|dprop| = 0.0796
+  ordinal density 0.4 seed 1: 42 edges, calibrating...
+    final max|dprop| = 0.0775
+  ordinal density 0.4 seed 2: 42 edges, calibrating...
+    final max|dprop| = 0.0723
+  ordinal density 0.6 seed 1: 63 edges, calibrating...
+    final max|dprop| = 0.0576
+  ordinal density 0.6 seed 2: 63 edges, calibrating...
+    final max|dprop| = 0.0639
+  binary density 0.2 seed 1: 21 edges, calibrating...
+    final max|dprop| = 0.0242
+  binary density 0.4 seed 1: 42 edges, calibrating...
+    final max|dprop| = 0.0716
+  binary density 0.6 seed 1: 63 edges, calibrating...
+    final max|dprop| = 0.0821
+  ggm density 0.2 seed 1: 21 edges, shrink 1.000
+  ggm density 0.4 seed 1: 42 edges, shrink 0.857
+  ggm density 0.6 seed 1: 63 edges, shrink 0.774
+
+=== manifest ===
+         
+          reference test
+  binary          6   60
+  ggm             6   60
+  ordinal        12  120
+24 data sets, 264 fits (240 test, 24 reference)
