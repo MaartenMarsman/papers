@@ -13,8 +13,9 @@ The manuscript is not part of this repository. Section and label names below (fo
 | Manuscript item | Script | Writes | Run time |
 |---|---|---|---|
 | Section 3.6, table `tab:realized-marginals` (realized diagonal mean and variance of $k_{12}$ on fixed reference graphs) | `R/manuscript/section_3_6.R` | `tables/section_3_6.tex`, `R/results/section_3_6.rds`, `.log` | about 1 h on one core |
+| Section 4.3, table `tab:joint-sparsening` (percentage of the specified expected edge count retained under the joint prior distribution; 156 cells, 25 chains each, bgms 0.2.0.1) | `R/manuscript/section_4_3.R` (`table-only` rebuilds the table from the per-chain files in `R/results/table1_bgms/chains/`) | `tables/section_4_3.tex`, `R/results/section_4_3.rds`, `.log` | about 10 h on 12 cores, 7.5 of them for $q = 100$ |
 
-Requirements for `section_3_6.R`: `bgms` 0.2.0.1 (`remotes::install_github("Bayesian-Graphical-Modelling-Lab/bgms@2da4bf30")`) and `posterior`. The header of each script states its design, seeds, requirements, and outputs. The remaining material in `R/scripts/` is the working archive of sweeps, checks, and figure scripts indexed below.
+Requirements for `section_3_6.R` and `section_4_3.R`: `bgms` 0.2.0.1 (`remotes::install_github("Bayesian-Graphical-Modelling-Lab/bgms@2da4bf30")`) and `posterior`. The header of each script states its design, seeds, requirements, and outputs. The remaining material in `R/scripts/` is the working archive of sweeps, checks, and figure scripts indexed below.
 
 ## Contents
 
