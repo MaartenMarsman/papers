@@ -218,7 +218,7 @@ lines <- c(
   paste0(" & ", paste(sprintf("\\multicolumn{2}{c}{$\\delta=%g$}", deltas), collapse = " & "), " \\\\"),
   paste(sprintf("\\cmidrule(lr){%d-%d}", 2 + 2 * (seq_along(deltas) - 1), 3 + 2 * (seq_along(deltas) - 1)),
         collapse = ""),
-  paste0("$q$ & ", paste(rep("Mean $k_{ll}$ & Var $k_{12}$", length(deltas)), collapse = " & "), " \\\\"),
+  paste0("$q$ & ", paste(rep("Diagonal mean & Var $k_{12}$", length(deltas)), collapse = " & "), " \\\\"),
   "\\midrule")
 for (q in qs) {
   vals <- unlist(lapply(deltas, function(d) c(sprintf("%.2f", cell(q, d, "diag_ratio")),
