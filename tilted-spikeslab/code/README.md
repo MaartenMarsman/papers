@@ -6,6 +6,16 @@ Simulation code, verification scripts, archived results, and figure and table ge
 
 The manuscript is not part of this repository. Section and label names below (for example `sec:hier-ratio`, `fig:cone-interior`, checks V1 to V8) refer to the manuscript.
 
+## Manuscript scripts: one script per analysis
+
+`R/manuscript/` holds one self-contained script per manuscript analysis. Each draws its own random numbers from the seeds written in the file, runs the computation, and writes the table or figure that the manuscript inputs, so an analysis is reproduced with one command from this directory.
+
+| Manuscript item | Script | Writes | Run time |
+|---|---|---|---|
+| Section 3.6, table `tab:realized-marginals` (realized diagonal mean and variance of $k_{12}$ on fixed reference graphs) | `R/manuscript/section_3_6.R` | `tables/section_3_6.tex`, `R/results/section_3_6.rds`, `.log` | about 1 h on one core |
+
+Requirements for `section_3_6.R`: `bgms` 0.2.0.1 (`remotes::install_github("Bayesian-Graphical-Modelling-Lab/bgms@2da4bf30")`) and `posterior`. The header of each script states its design, seeds, requirements, and outputs. The remaining material in `R/scripts/` is the working archive of sweeps, checks, and figure scripts indexed below.
+
 ## Contents
 
 1. [Overview](#overview)
