@@ -39,10 +39,11 @@ tables/        LaTeX tables produced by the scripts
 ## Requirements
 
 - R 4.x with a working C++ toolchain (Xcode command line tools on macOS, Rtools on Windows, gcc on Linux). The archived runs were made on an Apple silicon Mac; package versions were not recorded.
-- Packages used by the current scripts: `Rcpp` and `RcppArmadillo` (every C++ source), `ggplot2`, `patchwork`, `viridisLite`, `scales` (attached by `fig_style.R`, which every figure script sources), `gridExtra` (some figure scripts). `parallel` and `grid` are part of base R. The exploratory script `delta_default_investigation.R` additionally needs the `bgms` package.
+- Packages used by the current scripts: `Rcpp` and `RcppArmadillo` (every C++ source), `ggplot2`, `patchwork`, `viridisLite`, `scales` (attached by `fig_style.R`, which every figure script sources), `gridExtra` (some figure scripts). `parallel` and `grid` are part of base R. The exploratory script `delta_default_investigation.R` additionally needs the `bgms` package. The Section 3.6 marginal study (`section36_*.R`, 2026-11-14) and the Table 1 rerun (`table1_bgms_rerun.R`, `bgms_param_check_q5.R`) use `bgms` version 0.2.0.1 from GitHub (`Bayesian-Graphical-Modelling-Lab/bgms`, branch `develop`, commit `2da4bf30`) and the `posterior` package for R-hat and effective sample sizes; the scripts load a project-local library `R/lib/bgms_0.2.0.1` when present and otherwise the installed `bgms`, with a message if the version differs. Session details of the Section 3.6 run are in `R/results/section36_sessioninfo.txt`.
 
 ```r
-install.packages(c("Rcpp", "RcppArmadillo", "ggplot2", "patchwork", "viridisLite", "scales", "gridExtra"))
+install.packages(c("Rcpp", "RcppArmadillo", "ggplot2", "patchwork", "viridisLite", "scales", "gridExtra", "posterior"))
+remotes::install_github("Bayesian-Graphical-Modelling-Lab/bgms@2da4bf30")   # bgms 0.2.0.1 for the section36_* and table1_bgms scripts
 ```
 
 The long-running sweeps call `parallel::mclapply(..., mc.cores = 12L)` with the core count written inside the call (only `monotonicity_check.R` has a top-level variable). On Windows, which lacks forking, change those calls to `mc.cores = 1L`.
@@ -119,6 +120,8 @@ partial_correlation_sweep.R ──> partial_correlation.rds ─┴─> fig_speci
 joint_spec_sparsening_J1_chain_table.R ──> tables/joint_sparsening.tex
 timing_scaling.R ──> tables/timing_scaling.tex
 fig_style.R ──> every fig_*.R script (sourced)
+section36_bgms_conditional_check.R ──> section36_marginals_pilot.R ──> section36_marginals_bgms.R ──> section36_marginals_table.R
+    (bgms 0.2.0.1; the check and the cross-check section36_gibbs_crosscheck.R are independent of the study; about 1 h on one core in total)
 ```
 
 All inputs are archived, so any script can be run on its own against the archived inputs. Recorded run times (12 cores): J1 about 10 minutes; the regime sweep about 2 minutes; the compiled chain runs at about 14,000 iterations per second at $q = 20$ and 1,000 at $q = 50$ at the prior level; V8 chains take seconds to minutes per chain depending on `N` (see its log). The rejection-sampler sweeps are long-running: with the corrected samplers (2026-10-13, 12 cores) `partial_correlation_sweep.R` took 208 minutes, `marginal_offdiag_sweep.R` 128 minutes, and `rho_uniform_calibration.R` 4 minutes; `rerun_realized_marginals_2026-10-13.sh` runs them in sequence. V6 takes hours; its run time was not recorded.
@@ -155,6 +158,18 @@ Listed by the manuscript section they support. Inputs are archived results the s
 | Figure `fig:specified-realized` | `fig_specified_vs_realized.R` | `marginal_offdiag.rds`, `partial_correlation.rds` | `figures/specified_vs_realized.pdf` |
 | Table of total variation distances and variance ratios quoted in the text (the figure is not used) | `fig_marginal_specified_vs_realized.R` | `marginal_offdiag.rds` | `tables/marginal_specified_vs_realized.tex`, `figures/marginal_specified_vs_realized.pdf` |
 | Figure 2 (induced partial-correlation prior, restricted to $q \le 20$ since 2026-10-13) and the table of dispersion and tail mass quoted in the text | `fig_partial_correlation.R` | `partial_correlation.rds` | `tables/partial_correlation_prior.tex`, `figures/partial_correlation_prior.pdf` |
+
+### Realized marginals on fixed graphs (Section 3.6 table, bgms)
+
+Added 2026-11-14; replaces the rejection-sampling study `marginal_offdiag_sweep.R` as the source of Section 3.6 (that study and its archive are kept; the partial-correlation figure still rests on `partial_correlation_sweep.R`). Design: $q \in \{5, 10, 15, 20\}$, graphs with the reference edge $(1,2)$ forced in and the other edges Bernoulli with $p_{\mathrm{inc}} = 0.50, 0.20, 0.13, 0.10$ (seed $36200 + q$), the same 200 graphs at $\delta \in \{0, 1, 2\}$, $\sigma = \beta = 1$; two chains of 1000 warmup and 2000 retained iterations per graph and $\delta$ (seed $q \cdot 10^6 + \delta \cdot 10^5 + 10\,\text{graph} + \text{chain}$) from `bgms::sample_ggm_prior(spec = "conditional")`, a no-U-turn sampler on a Cholesky parametrization that enforces the zero pattern. Equal weights over graphs; standard errors from the spread of the per-graph means (delta method for the variance); all 4800 chains completed, split R-hat at most 1.006, ESS of $k_{12}^2$ at least 504 per chain. The `.rds` stores the graphs, the per-chain and per-graph tables, 50 batch means per chain, and the per-cell summary.
+
+| Purpose | Script | Inputs | Outputs |
+|---|---|---|---|
+| Exact check of the bgms fixed-graph sampler and its parameter mapping at $q = 3$ (importance-sampling reference, full graph and a graph with a missing edge); timing at $q = 10, 20$ | `section36_bgms_conditional_check.R` | | `section36_bgms_conditional_check.rds`, `.log` |
+| Pilot: 40 graphs per $q$, two chains each, to fix the study size | `section36_marginals_pilot.R` | | `section36_marginals_pilot.rds`, `.log` |
+| Main study behind Table `tab:realized-marginals` | `section36_marginals_bgms.R` | | `section36_marginals_bgms.rds`, `.log`, `section36_sessioninfo.txt` |
+| The table | `section36_marginals_table.R` | `section36_marginals_bgms.rds` | `tables/section36_marginals.tex` |
+| Second-sampler cross-check: NUTS against bgms's internal row-block Gibbs sweep on the same fixed graphs | `section36_gibbs_crosscheck.R` | | `section36_gibbs_crosscheck.rds`, `.log` |
 
 ### Sparsening under the joint specification
 
@@ -216,8 +231,9 @@ The project started from a construction that combined the tilt with an eigenvalu
 | Figure `fig:cone-interior`; Section 2 numbers on the positive-definiteness rate, smallest eigenvalue, and diagonal inflation | `cone_interior_diagnostics_expanded.R`, `fig_cone_interior_expanded.R` | `cone_interior_expanded.rds` |
 | Figure `fig:delta-scaling`; required tilt by regime; median smallest eigenvalue at fixed tilt | `delta_scaling_regime_sweep.R`, `fig_delta_scaling_regime.R` | `delta_scaling_regime_sweep.rds`, `delta_scaling_regime_inversion.rds` |
 | $c(0)$ values, the tilt required for a sparsening tolerance, and the partial-correlation dispersion at large tilt (monotonicity section) | console output of `fig_delta_scaling_regime.R`; $c(0)$ also in `monotonicity_check.log` | |
-| Figures `fig:realized-slab`, `fig:specified-realized` | `fig_realized_conditional_slab.R`, `fig_specified_vs_realized.R` | `marginal_offdiag.rds`, `partial_correlation.rds` |
-| Total variation distances and variance ratios of the realized slab | `fig_marginal_specified_vs_realized.R` | `tables/marginal_specified_vs_realized.tex` |
+| Table `tab:realized-marginals` (Section 3.6: realized diagonal mean and variance of $k_{12}$ on fixed graphs) | `section36_marginals_bgms.R`, `section36_marginals_table.R` | `section36_marginals_bgms.rds`, `tables/section36_marginals.tex` |
+| Figure `fig:realized-slab` | `fig_realized_conditional_slab.R` | `marginal_offdiag.rds` |
+| Superseded (2026-11-14): Figure `fig:specified-realized` and the total variation distances, no longer in the manuscript | `fig_specified_vs_realized.R`, `fig_marginal_specified_vs_realized.R` | `marginal_offdiag.rds`, `partial_correlation.rds`, `tables/marginal_specified_vs_realized.tex` |
 | Partial-correlation standard deviation and tail masses | `fig_partial_correlation.R` | `tables/partial_correlation_prior.tex` |
 | Table `tab:joint-sparsening` and the compensated specification | `joint_spec_sparsening_J1_chain_table.R` | `joint_spec_sparsening_J1_chain_table.rds` |
 | Bracket check of all per-pair factors; enumeration cross-check | `joint_spec_sparsening_J1.R` | `joint_spec_sparsening_J1.rds` |
@@ -248,4 +264,5 @@ Issue 1 was found in a review on 2026-10-13; issues 2 to 4 in a code review on 2
 
 - Every script that draws random numbers sets `set.seed()` before the first draw, and the parallel sweeps derive per-task seeds from a base seed written in the script, so a re-run reproduces an archived result up to floating-point differences across platforms and BLAS libraries. The `fig_*.R` scripts are deterministic transformations of archived results; their PDF output depends on the graphics device (`cairo_pdf` with a fallback to `pdf`).
 - Monte Carlo standard errors and between-seed noise floors are printed next to the estimates and stored in the `.rds` files.
+- The bgms-based studies record every chain's seed, completion flag and error message, run time, and effective sample sizes, and keep batch means (Section 3.6) or edge-count trajectories (Table 1 rerun, `R/results/table1_bgms/chains/`) so that the uncertainty calculations can be redone from the archive. The Table 1 rerun (started 2026-11-14) is added to the archive when it completes.
 - The same two seeds are reused across cells in several sweeps (for example 8801 and 8802 in J2); within a cell the replicates are independent, across cells they share random-number streams. This has no bearing on the reported quantities.
