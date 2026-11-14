@@ -4,7 +4,7 @@
 # tab:realized-marginals): the realized mean of a diagonal entry and the
 # realized variance of the included reference entry k_12 under the fixed-graph
 # prior distribution, averaged with equal weights over a sample of reference
-# graphs, at sigma = beta = 1, q in {5, 10, 15, 20}, delta in {0, 1, 2}.
+# graphs, at sigma = beta = 1, q in {5, 10, 15, 20}, delta in {0, 1, 2, 10}.
 #
 # Design
 #   Graphs: for each q, 200 graphs with edge (1,2) present and the other edges
@@ -56,7 +56,7 @@ stopifnot(requireNamespace("posterior", quietly = TRUE))
 ## ---- design ----
 qs <- c(5L, 10L, 15L, 20L)
 p_inc_for_q <- c(`5` = 0.50, `10` = 0.20, `15` = 0.13, `20` = 0.10)
-deltas <- c(0, 1, 2)
+deltas <- c(0, 1, 2, 10)
 sigma <- 1
 beta <- 1
 n_graphs <- 200L
