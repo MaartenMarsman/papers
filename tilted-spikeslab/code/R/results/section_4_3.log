@@ -155,8 +155,8 @@
  100 1.0 2.302585  0.10 495.00 386.6197371 78.10    0.013    25          25
  100 2.0 0.000000  0.10 495.00 166.3188343 33.60    0.011    25          25
  100 2.0 1.000000  0.10 495.00 225.1875429 45.49    0.010    25          25
- 100 2.0 2.000000  0.10 495.00 262.7014082 53.07    0.015    14          14
- 100 2.0 2.302585  0.10 495.00          NA    NA       NA     0           0
+ 100 2.0 2.000000  0.10 495.00 262.7430286 53.08    0.011    25          25
+ 100 2.0 2.302585  0.10 495.00 271.9416343 54.94    0.012    25          25
  n_failed   rhat mean_chain_secs complete
         0 1.0001               0     TRUE
         0 1.0001               0     TRUE
@@ -312,14 +312,9 @@
         0 1.0000            1601     TRUE
         0 1.0002            1569     TRUE
         0 1.0001            1542     TRUE
-        0 1.0001            1531    FALSE
-        0     NA              NA    FALSE
+        0 1.0000            1525     TRUE
+        0 1.0001           15613     TRUE
 
-== cells without their 25 chains (left blank in the table) ==
-   q eta    delta p_inc n_run      pct
- 100   2 2.000000   0.1    14 53.07099
- 100   2 2.302585   0.1     0       NA
+Complete cells: 156 of 156; failed chains: 0; max R-hat 1.0022; max MCSE 0.298 points (q = 5), 0.160 (q = 10), 0.077 (q >= 20)
 
-Complete cells: 154 of 156; failed chains: 0; max R-hat 1.0022; max MCSE 0.298 points (q = 5), 0.160 (q = 10), 0.077 (q >= 20)
-
-[2026-11-15 00:40:59] done in 0.0 h; wrote tables/section_4_3.tex and R/results/section_4_3.rds
+[2026-11-15 09:47:57] done in 0.0 h; wrote tables/section_4_3.tex and R/results/section_4_3.rds
