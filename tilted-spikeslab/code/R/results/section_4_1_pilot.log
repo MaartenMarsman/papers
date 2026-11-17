@@ -1,0 +1,21 @@
+[2026-11-15 23:34:56] Section 4.1 (pilot): bgms 0.2.0.1; 8 cells; graphs per cell 8; 12 exponents x 4 chains; 1000 + 2000 iterations; 12 cores
+[2026-11-15 23:34:56] cell 50_density0.05_eta0.5: 8 graphs to run
+[2026-11-16 08:13:46] cell 50_density0.05_eta0.5 done in 8.65 h
+[2026-11-16 08:13:46] cell 10_degree2_eta1: 8 graphs to run
+[2026-11-16 08:13:53] cell 10_degree2_eta1 done in 0.00 h
+[2026-11-16 08:13:53] cell 20_degree2_eta1: 8 graphs to run
+[2026-11-16 08:14:37] cell 20_degree2_eta1 done in 0.01 h
+[2026-11-16 08:14:37] cell 50_degree2_eta1: 8 graphs to run
+[2026-11-16 08:30:35] cell 50_degree2_eta1 done in 0.27 h
+[2026-11-16 08:30:35] cell 50_density0.2_eta1: 8 graphs to run
+[2026-11-16 09:14:41] cell 50_density0.2_eta1 done in 0.73 h
+[2026-11-16 09:14:41] cell 50_degree8_eta2: 8 graphs to run
+[2026-11-16 10:26:26] cell 50_degree8_eta2 done in 1.20 h
+[2026-11-16 10:26:26] cell 10_density0.2_eta2: 8 graphs to run
+[2026-11-16 10:26:33] cell 10_density0.2_eta2 done in 0.00 h
+[2026-11-16 10:26:33] cell 20_density0.2_eta2: 8 graphs to run
+[2026-11-16 10:27:24] cell 20_density0.2_eta2 done in 0.01 h
+
+[2026-11-16 10:27:24] 64 graph checkpoints on disk
+Error: unexpected ',' in " tg,"
+Execution halted
